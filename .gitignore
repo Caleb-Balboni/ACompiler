@@ -1,0 +1,32 @@
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+
+# Objects / libs / bins
+*.o
+*.a
+*.so
+*.so.*
+*.dylib
+*.exe
+*.out
+
+# Editor junk (Vim/Neovim)
+*.swp
+*.swo
+*.swx
+.*.swp
+.*.swo
+.*.swx
+*~
+.*~
+*.un~
+
+# OS
+.DS_Store
+Thumbs.db
