@@ -4,6 +4,7 @@ ACompiler: \
   /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o \
   CMakeFiles/ACompiler.dir/src/main.c.o \
   libtokenizer.a \
+  libutils.a \
   /usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a \
   /usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so \
   /usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so \
@@ -35,6 +36,8 @@ ACompiler: \
 CMakeFiles/ACompiler.dir/src/main.c.o:
 
 libtokenizer.a:
+
+libutils.a:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a:
 

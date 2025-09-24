@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -I/home/masterdonut/Projects/C-Projects/ACompiler/include/tokenizer
+C_INCLUDES = -I/home/masterdonut/Projects/C-Projects/ACompiler/include
 
 C_FLAGS = 
 

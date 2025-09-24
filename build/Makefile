@@ -117,19 +117,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named ACompiler
-
-# Build rule for target.
-ACompiler: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ACompiler
-.PHONY : ACompiler
-
-# fast build rule for target.
-ACompiler/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ACompiler.dir/build.make CMakeFiles/ACompiler.dir/build
-.PHONY : ACompiler/fast
-
-#=============================================================================
 # Target rules for targets named tokenizer
 
 # Build rule for target.
@@ -141,6 +128,32 @@ tokenizer: cmake_check_build_system
 tokenizer/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tokenizer.dir/build.make CMakeFiles/tokenizer.dir/build
 .PHONY : tokenizer/fast
+
+#=============================================================================
+# Target rules for targets named utils
+
+# Build rule for target.
+utils: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 utils
+.PHONY : utils
+
+# fast build rule for target.
+utils/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/build
+.PHONY : utils/fast
+
+#=============================================================================
+# Target rules for targets named ACompiler
+
+# Build rule for target.
+ACompiler: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ACompiler
+.PHONY : ACompiler
+
+# fast build rule for target.
+ACompiler/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ACompiler.dir/build.make CMakeFiles/ACompiler.dir/build
+.PHONY : ACompiler/fast
 
 src/main.o: src/main.c.o
 .PHONY : src/main.o
@@ -190,6 +203,30 @@ src/tokenizer/tokenizer.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tokenizer.dir/build.make CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.s
 .PHONY : src/tokenizer/tokenizer.c.s
 
+src/utils/hashtable.o: src/utils/hashtable.c.o
+.PHONY : src/utils/hashtable.o
+
+# target to build an object file
+src/utils/hashtable.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/utils/hashtable.c.o
+.PHONY : src/utils/hashtable.c.o
+
+src/utils/hashtable.i: src/utils/hashtable.c.i
+.PHONY : src/utils/hashtable.i
+
+# target to preprocess a source file
+src/utils/hashtable.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/utils/hashtable.c.i
+.PHONY : src/utils/hashtable.c.i
+
+src/utils/hashtable.s: src/utils/hashtable.c.s
+.PHONY : src/utils/hashtable.s
+
+# target to generate assembly for a file
+src/utils/hashtable.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/utils/hashtable.c.s
+.PHONY : src/utils/hashtable.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -200,12 +237,16 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... ACompiler"
 	@echo "... tokenizer"
+	@echo "... utils"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
 	@echo "... src/tokenizer/tokenizer.o"
 	@echo "... src/tokenizer/tokenizer.i"
 	@echo "... src/tokenizer/tokenizer.s"
+	@echo "... src/utils/hashtable.o"
+	@echo "... src/utils/hashtable.i"
+	@echo "... src/utils/hashtable.s"
 .PHONY : help
 
 

@@ -1,4 +1,5 @@
-/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles/ACompiler.dir
 /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles/tokenizer.dir
+/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles/utils.dir
+/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles/ACompiler.dir
 /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles/edit_cache.dir
 /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles/rebuild_cache.dir

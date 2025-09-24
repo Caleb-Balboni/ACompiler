@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "tokenizer.h"
-#include "tokens.h"
+#include "tokenizer/tokenizer.h"
+#include "tokenizer/tokens.h"
 
 TokenList tokenize(FILE* sourcefile) {
 	printf("sucessfully got to tokenize");

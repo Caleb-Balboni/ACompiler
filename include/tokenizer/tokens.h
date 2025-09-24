@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 typedef enum {
+	UNKNOWN,
 	SEMICOLON,
 	RETURN,
 } Token;

@@ -54,6 +54,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/ACompiler.dir/DependInfo.cmake"
   "CMakeFiles/tokenizer.dir/DependInfo.cmake"
+  "CMakeFiles/utils.dir/DependInfo.cmake"
+  "CMakeFiles/ACompiler.dir/DependInfo.cmake"
   )
