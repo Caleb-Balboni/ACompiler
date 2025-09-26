@@ -203,6 +203,30 @@ src/tokenizer/tokenizer.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tokenizer.dir/build.make CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.s
 .PHONY : src/tokenizer/tokenizer.c.s
 
+src/utils/detector.o: src/utils/detector.c.o
+.PHONY : src/utils/detector.o
+
+# target to build an object file
+src/utils/detector.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/utils/detector.c.o
+.PHONY : src/utils/detector.c.o
+
+src/utils/detector.i: src/utils/detector.c.i
+.PHONY : src/utils/detector.i
+
+# target to preprocess a source file
+src/utils/detector.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/utils/detector.c.i
+.PHONY : src/utils/detector.c.i
+
+src/utils/detector.s: src/utils/detector.c.s
+.PHONY : src/utils/detector.s
+
+# target to generate assembly for a file
+src/utils/detector.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/utils/detector.c.s
+.PHONY : src/utils/detector.c.s
+
 src/utils/hashtable.o: src/utils/hashtable.c.o
 .PHONY : src/utils/hashtable.o
 
@@ -244,6 +268,9 @@ help:
 	@echo "... src/tokenizer/tokenizer.o"
 	@echo "... src/tokenizer/tokenizer.i"
 	@echo "... src/tokenizer/tokenizer.s"
+	@echo "... src/utils/detector.o"
+	@echo "... src/utils/detector.i"
+	@echo "... src/utils/detector.s"
 	@echo "... src/utils/hashtable.o"
 	@echo "... src/utils/hashtable.i"
 	@echo "... src/utils/hashtable.s"

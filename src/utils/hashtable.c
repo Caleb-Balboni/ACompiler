@@ -3,14 +3,14 @@
 #include <stdlib.h>
 #include <limits.h>
 #include <stdbool.h>
+#include <assert.h>
 #include "utils/hashtable.h"
 #include "tokenizer/tokens.h"
 
-node_t* create_node(const char* key, const Token value) {
+node_t* create_node(const char* key, const Token_type value) {
 	
 	node_t* node = malloc(sizeof(node_t*) * 1);
 	node->key = malloc(strlen(key) * 1);
-
 	strcpy(node->key, key);
 	node->value = value;
 
@@ -47,12 +47,11 @@ hashtable_t* createHashTable(const unsigned int capacity) {
 	return hashtable;
 }
 
-void addHashTable(hashtable_t* hashtable, const char* key, const Token value) {
+void addHashTable(hashtable_t* hashtable, const char* key, const Token_type value) {
 	
 	unsigned int slot = hash(hashtable, key);
-	
+		
 	node_t* node = hashtable->nodes[slot];
-
 	if (node == NULL) {
 		hashtable->nodes[slot] = create_node(key, value); 
 	}
@@ -73,7 +72,7 @@ void addHashTable(hashtable_t* hashtable, const char* key, const Token value) {
 	prev->next = create_node(key, value);
 }
 
-Token getHashTable(hashtable_t* hashtable, const char* key) {
+Token_type getHashTable(hashtable_t* hashtable, const char* key) {
 	
 	unsigned int slot = hash(hashtable, key);
 

@@ -10,7 +10,7 @@
 
 typedef struct node_t {
 	char* key;
-	Token value;
+	Token_type value;
 	struct node_t* next;
 
 } node_t;
@@ -25,7 +25,7 @@ typedef struct hashtable_t {
 // creates a node with a key value pair
 // @param key - the key to add to the node
 // @param value - the value to add to  the node 
-node_t* create_node(const char* key, const Token value);
+node_t* create_node(const char* key, const Token_type value);
 
 // hashes the key to the hashtable
 // @param: hashtable - the hashtable we are hashing within
@@ -42,13 +42,13 @@ hashtable_t* createHashTable(const unsigned int capacity);
 // @param hashtable - the hashtable to add to
 // @param key - the key for the value in the hash table
 // @param value - the value the given key will be attached to
-void addHashTable(hashtable_t* hashtable, const char* key, const Token value);
+void addHashTable(hashtable_t* hashtable, const char* key, const Token_type value);
 
 // returns a value from the hash table based upon a given key
 // @param hashtable - the hashtable to search
 // @param key - the key in the key value pair
 // @return: the value the given key is pointing to
-Token getHashTable(hashtable_t* hashtable, const char* key);
+Token_type getHashTable(hashtable_t* hashtable, const char* key);
 
 // remove a value from the hashtable given a paricular key
 // @param hashtable - the hashtable to be removed from

@@ -123,12 +123,12 @@ CMakeFiles/tokenizer.dir/clean:
 CMakeFiles/utils.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=5,6 "Built target utils"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=5,6,7 "Built target utils"
 .PHONY : CMakeFiles/utils.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/utils.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/utils.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles 0
 .PHONY : CMakeFiles/utils.dir/rule
@@ -140,7 +140,7 @@ utils: CMakeFiles/utils.dir/rule
 # codegen rule for target.
 CMakeFiles/utils.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=5,6 "Finished codegen for target utils"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=5,6,7 "Finished codegen for target utils"
 .PHONY : CMakeFiles/utils.dir/codegen
 
 # clean rule for target.
@@ -161,7 +161,7 @@ CMakeFiles/ACompiler.dir/all: CMakeFiles/utils.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/ACompiler.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/ACompiler.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles 0
 .PHONY : CMakeFiles/ACompiler.dir/rule
