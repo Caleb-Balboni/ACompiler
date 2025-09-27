@@ -203,6 +203,30 @@ src/tokenizer/tokenizer.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tokenizer.dir/build.make CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.s
 .PHONY : src/tokenizer/tokenizer.c.s
 
+src/utils/arraylist.o: src/utils/arraylist.c.o
+.PHONY : src/utils/arraylist.o
+
+# target to build an object file
+src/utils/arraylist.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/utils/arraylist.c.o
+.PHONY : src/utils/arraylist.c.o
+
+src/utils/arraylist.i: src/utils/arraylist.c.i
+.PHONY : src/utils/arraylist.i
+
+# target to preprocess a source file
+src/utils/arraylist.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/utils/arraylist.c.i
+.PHONY : src/utils/arraylist.c.i
+
+src/utils/arraylist.s: src/utils/arraylist.c.s
+.PHONY : src/utils/arraylist.s
+
+# target to generate assembly for a file
+src/utils/arraylist.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/utils/arraylist.c.s
+.PHONY : src/utils/arraylist.c.s
+
 src/utils/detector.o: src/utils/detector.c.o
 .PHONY : src/utils/detector.o
 
@@ -268,6 +292,9 @@ help:
 	@echo "... src/tokenizer/tokenizer.o"
 	@echo "... src/tokenizer/tokenizer.i"
 	@echo "... src/tokenizer/tokenizer.s"
+	@echo "... src/utils/arraylist.o"
+	@echo "... src/utils/arraylist.i"
+	@echo "... src/utils/arraylist.s"
 	@echo "... src/utils/detector.o"
 	@echo "... src/utils/detector.i"
 	@echo "... src/utils/detector.s"

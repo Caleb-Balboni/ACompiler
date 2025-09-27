@@ -2,11 +2,15 @@
 #define TOKENS
 
 #include <stdio.h>
+#include "utils/arraylist.h"
 
 typedef enum {
 	UNKNOWN,
 	IDENTIFIER,
+	STRING_LIT,
+	NUMBER_LIT,
        	SEMICOLON,
+	EQUALS,
 	RETURN,
 } Token_type;
 
@@ -17,11 +21,6 @@ typedef struct {
 	unsigned int col, row;
 
 } Token; 
-
-typedef struct {
-	Token* tokens;
-	size_t len;
-} TokenList;
 
 // creates a token based upon the given params
 // @param type - the type of the token

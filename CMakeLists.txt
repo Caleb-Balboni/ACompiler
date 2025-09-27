@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 project(ACompiler)
 
 add_library(tokenizer src/tokenizer/tokenizer.c)
-add_library(utils     src/utils/hashtable.c src/utils/detector.c)
+add_library(utils     src/utils/hashtable.c src/utils/detector.c src/utils/arraylist.c)
 set(CMAKE_C_FLAGS, "${CMAKE_C_FLAGS} -g")
 target_include_directories(tokenizer PUBLIC ${CMAKE_SOURCE_DIR}/include) 
 target_include_directories(utils     PUBLIC ${CMAKE_SOURCE_DIR}/include) 

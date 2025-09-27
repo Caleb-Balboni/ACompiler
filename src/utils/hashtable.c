@@ -9,7 +9,7 @@
 
 node_t* create_node(const char* key, const Token_type value) {
 	
-	node_t* node = malloc(sizeof(node_t*) * 1);
+	node_t* node = malloc(sizeof(node_t) * 1);
 	node->key = malloc(strlen(key) * 1);
 	strcpy(node->key, key);
 	node->value = value;
@@ -35,10 +35,10 @@ unsigned int hash(hashtable_t* hashtable, const char* key) {
 
 hashtable_t* createHashTable(const unsigned int capacity) {
 	
-	hashtable_t* hashtable = malloc(sizeof(struct hashtable_t*) * 1);
+	hashtable_t* hashtable = malloc(sizeof(hashtable_t) * 1);
 	hashtable->capacity = capacity;
 	hashtable->size = 0;
-	hashtable->nodes = (node_t**)malloc(sizeof(struct node_t*) * capacity);
+	hashtable->nodes = malloc(sizeof *hashtable->nodes * capacity);
 
 	for (int i = 0; i < capacity; i++) {
 		hashtable->nodes[i] = NULL;
@@ -54,6 +54,8 @@ void addHashTable(hashtable_t* hashtable, const char* key, const Token_type valu
 	node_t* node = hashtable->nodes[slot];
 	if (node == NULL) {
 		hashtable->nodes[slot] = create_node(key, value); 
+		hashtable->size += 1;
+		return;
 	}
 
 	node_t* prev;
@@ -70,6 +72,7 @@ void addHashTable(hashtable_t* hashtable, const char* key, const Token_type valu
 	}
 
 	prev->next = create_node(key, value);
+	hashtable->size += 1;
 }
 
 Token_type getHashTable(hashtable_t* hashtable, const char* key) {

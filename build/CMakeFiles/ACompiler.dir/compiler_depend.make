@@ -20,6 +20,7 @@ ACompiler: /lib/x86_64-linux-gnu/libc.so.6 \
 CMakeFiles/ACompiler.dir/src/main.c.o: /home/masterdonut/Projects/C-Projects/ACompiler/src/main.c \
   /home/masterdonut/Projects/C-Projects/ACompiler/include/tokenizer/tokenizer.h \
   /home/masterdonut/Projects/C-Projects/ACompiler/include/tokenizer/tokens.h \
+  /home/masterdonut/Projects/C-Projects/ACompiler/include/utils/arraylist.h \
   /home/masterdonut/Projects/C-Projects/ACompiler/include/utils/hashtable.h \
   /usr/include/alloca.h \
   /usr/include/endian.h \
@@ -127,6 +128,8 @@ CMakeFiles/ACompiler.dir/src/main.c.o: /home/masterdonut/Projects/C-Projects/ACo
 
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
 /usr/include/stdio.h:
@@ -147,7 +150,7 @@ CMakeFiles/ACompiler.dir/src/main.c.o:
 
 /usr/include/x86_64-linux-gnu/bits/time64.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
+/home/masterdonut/Projects/C-Projects/ACompiler/include/utils/arraylist.h:
 
 /home/masterdonut/Projects/C-Projects/ACompiler/include/tokenizer/tokenizer.h:
 
@@ -215,9 +218,9 @@ libtokenizer.a:
 
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
 
-/usr/include/string.h:
-
 /usr/lib/x86_64-linux-gnu/libgcc_s.so.1:
+
+/usr/include/string.h:
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
 
