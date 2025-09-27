@@ -22,6 +22,7 @@ CMakeFiles/ACompiler.dir/src/main.c.o
  /home/masterdonut/Projects/C-Projects/ACompiler/src/main.c
  /home/masterdonut/Projects/C-Projects/ACompiler/include/tokenizer/tokenizer.h
  /home/masterdonut/Projects/C-Projects/ACompiler/include/tokenizer/tokens.h
+ /home/masterdonut/Projects/C-Projects/ACompiler/include/utils/arraylist.h
  /home/masterdonut/Projects/C-Projects/ACompiler/include/utils/hashtable.h
  /usr/include/alloca.h
  /usr/include/endian.h
