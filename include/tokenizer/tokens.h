@@ -9,6 +9,7 @@ typedef enum {
 	IDENTIFIER,
 	STRING_LIT,
 	NUMBER_LIT,
+	INTEGER, 
        	SEMICOLON,
 	EQUALS,
 	RETURN,
