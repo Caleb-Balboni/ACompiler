@@ -15,6 +15,7 @@ void initTokenMap(void) {
 	token_hash = createHashTable(100);
 	addHashTable(token_hash, ";", SEMICOLON);
 	addHashTable(token_hash, "=", EQUALS);
+	addHashTable(token_hash, "int", INTEGER); 
 	addHashTable(token_hash, "return", RETURN);
 }
 
@@ -97,21 +98,21 @@ ArrayList* tokenize(FILE* sourcefile) {
 }
 
 Token* parseString(char* input, unsigned int column, unsigned int row) {
+	
+	Token_type token = getHashTable(token_hash, input);
 
-	// first test if input is identifier
-	if (isIdentifier(input) && getHashTable(token_hash, input) == UNKNOWN) {
+	if (isIdentifier(input) && token == UNKNOWN) {
 		return createToken(IDENTIFIER, input, strlen(input), column, row);
 	}
 
-	if (isStringLit(input)) {
+	if (isStringLit(input) && token == UNKNOWN) {
 		return createToken(STRING_LIT, input, strlen(input), column, row);
 	}
 
-	if (isNumberLit(input)) {
+	if (isNumberLit(input) && token == UNKNOWN) {
 		return createToken(NUMBER_LIT, input, strlen(input), column, row);
 	}
 
-	Token_type token = getHashTable(token_hash, input);	
 	assert(token != UNKNOWN);
 	return createToken(token, input, strlen(input), column, row);
 }	
