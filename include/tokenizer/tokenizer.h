@@ -6,25 +6,37 @@
 #include "utils/arraylist.h"
 #include "tokenizer/tokens.h"
 
+typedef struct {
+	FILE* sourcefile;
+	char cur;
+	int start;
+	int current;
+	int line;
+	
+
+} Tokenizer;
+
+// checks if the current char in the tokenizer equals a given char
+// @param tokenizer - the tokenizer to check inside
+// @param c - the char to check against
+// @return - true if the chars match, false otherwise
+bool match(Tokenizer* tokenizer, char c);
+
 // init a hashmap with all the string keys to token types
 void initTokenMap(void);
 
-// given a line from the source file, creates tokens from that line 
-// @param s - the line of characters to tokenize
-// @param delims - the delimiters to split at
-// @param out - the arraylist of tokens to add to
-void tokenizeLine(const char* s, char* delims, ArrayList* out);
+// advances the position of the file pointer by 1 and return the last char
+// @param tokenizer - the tokenizer to edit
+char advance(Tokenizer* tokenizer);
+
+// scans the next token and return it
+// @param tokenizer - the tokenizer to use 
+// @retunr - the next token
+Token* scanToken(Tokenizer* tokenizer);
 
 // main function for the tokenizer, returns the list of tokens parsed in the source file
 // @param: sourcefile - the sourcefile inputted by the user
 // @return: returns a list of tokens parsed from the source file
 ArrayList* tokenize(FILE* sourcefile);
-
-// parses a singular string and returns its corresponding token type
-// @param: input - the string input to be parsed
-// @param column - the column this token is in
-// @param row - the row this column is in
-// @return: the token the input matches to
-Token* parseString(char* input, unsigned int column, unsigned int row);
 
 #endif
