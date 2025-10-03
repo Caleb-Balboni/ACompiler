@@ -27,6 +27,12 @@ compile_commands.json
 .*~
 *.un~
 
+# clang extras
+.cache/
+.clangd-cache/
+.clangd/index/
+.clangd/indexes/
+
 # OS
 .DS_Store
 Thumbs.db
