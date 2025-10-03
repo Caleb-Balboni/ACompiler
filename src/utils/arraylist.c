@@ -16,10 +16,13 @@ void destoryArrayList(ArrayList* array) {
 
 	for (int i = 0; i < array->length; i++) {
 		free(array->items[i]);	
+    array->items[i] = NULL;
 	}
 
 	free(array->items);
+  array->items = NULL;
 	free(array);	
+  array = NULL;
 }
 
 void* getArrayList(ArrayList* array, unsigned int index) {

@@ -5,7 +5,6 @@ CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.o: /home/masterdonut/Projects
   /home/masterdonut/Projects/C-Projects/ACompiler/include/tokenizer/tokenizer.h \
   /home/masterdonut/Projects/C-Projects/ACompiler/include/tokenizer/tokens.h \
   /home/masterdonut/Projects/C-Projects/ACompiler/include/utils/arraylist.h \
-  /home/masterdonut/Projects/C-Projects/ACompiler/include/utils/detector.h \
   /home/masterdonut/Projects/C-Projects/ACompiler/include/utils/hashtable.h \
   /usr/include/alloca.h \
   /usr/include/assert.h \
@@ -141,7 +140,7 @@ CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.o: /home/masterdonut/Projects
 
 /home/masterdonut/Projects/C-Projects/ACompiler/include/utils/arraylist.h:
 
-/home/masterdonut/Projects/C-Projects/ACompiler/include/utils/detector.h:
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
 
 /usr/include/stdlib.h:
 
@@ -163,8 +162,6 @@ CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.o: /home/masterdonut/Projects
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
 
-/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
 /home/masterdonut/Projects/C-Projects/ACompiler/src/tokenizer/tokenizer.c:
@@ -177,17 +174,11 @@ CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.o: /home/masterdonut/Projects
 
 /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h:
-
 /usr/include/x86_64-linux-gnu/bits/select.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
-
 /home/masterdonut/Projects/C-Projects/ACompiler/include/utils/hashtable.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
 
@@ -230,3 +221,9 @@ CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.o: /home/masterdonut/Projects
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
