@@ -1,0 +1,12 @@
+CompileFlags:
+  # Point clangd to your CMake database (works even if Neovim's cwd drifts).
+  CompilationDatabase: build
+  # If your project is C++17/20, set a default (used only when a TU isn’t in the DB).
+  Add: [-std=c++20]
+
+# Let clangd use GCC/Clang on Debian/Kali
+QueryDriver: /usr/bin/clang*, /usr/bin/g++*, /usr/bin/cc, /usr/bin/c++
+
+# (Optional) make diagnostics nicer
+Diagnostics:
+  Suppress: ["-Wunused-parameter"]

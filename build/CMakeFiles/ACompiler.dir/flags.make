@@ -6,5 +6,5 @@ C_DEFINES =
 
 C_INCLUDES = -I/home/masterdonut/Projects/C-Projects/ACompiler/include
 
-C_FLAGS = 
+C_FLAGS = -g
 
