@@ -10,10 +10,10 @@
 node_t* create_node(const char* key, void* value) {
 	
 	node_t* node = malloc(sizeof(node_t) * 1);
-	node->key = malloc(strlen(key) * 1);
+  assert(node);
+	node->key = malloc(strlen(key) + 1);
 	strcpy(node->key, key);
 	node->value = value;
-
 	node->next = NULL;
 
 	return node;
@@ -21,7 +21,7 @@ node_t* create_node(const char* key, void* value) {
 
 unsigned int hash(hashtable_t* hashtable, const char* key) {
 	
-	unsigned long int value = 0;
+	unsigned long int value = 1;
 	unsigned int key_len = strlen(key);
 
 	for (int i = 0; i < key_len; i++) {
@@ -38,11 +38,7 @@ hashtable_t* createHashTable(const unsigned int capacity) {
 	hashtable_t* hashtable = malloc(sizeof(hashtable_t) * 1);
 	hashtable->capacity = capacity;
 	hashtable->size = 0;
-	hashtable->nodes = malloc(sizeof *hashtable->nodes * capacity);
-
-	for (int i = 0; i < capacity; i++) {
-		hashtable->nodes[i] = NULL;
-	}
+	hashtable->nodes = calloc(capacity, sizeof(node_t*));
 
 	return hashtable;
 }
@@ -103,16 +99,19 @@ bool removeHashTable(hashtable_t* hashtable, const char* key) {
 
 	node_t* node = hashtable->nodes[slot];
 	
-	node_t* prev = node;
+	node_t* prev = NULL;
+
 	while (node != NULL) {
 
 		if (strcmp(node->key, key) == 0) {
-			
-			node_t* next = node->next;
-			prev->next = next;
+		  
+      if (prev) {
+        prev->next = node->next; 
+      } else {
+        hashtable->nodes[slot] = node->next;
+      }
 			free(node->key);
 			free(node);	
-	        	node = NULL;
 
 			return true;
 		}
