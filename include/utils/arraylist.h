@@ -27,7 +27,7 @@ bool appendArrayList(ArrayList* array, void* item);
 
 // destorys an arraylist and all the contents within it
 // @param array - the array to destory
-void destoryArrayList(ArrayList* array);
+void destroyArrayList(ArrayList* array);
 
 #define RESIZE_MUL 2
 

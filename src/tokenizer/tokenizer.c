@@ -12,8 +12,12 @@ static hashtable_t* token_hash = NULL;
 void initTokenMap(void) {
 	
 	token_hash = createHashTable(100);
-	addHashTable(token_hash, "int", INTEGER); 
-	addHashTable(token_hash, "return", RETURN);
+  Token_type* t = malloc(sizeof(Token_type));
+  *t = INTEGER;
+	addHashTable(token_hash, "int", t); 
+  Token_type* tt = malloc(sizeof(Token_type));
+  *tt = RETURN;
+	addHashTable(token_hash, "return", tt);
 }
 
 char* getCurWord(Tokenizer* tokenizer) {
@@ -48,9 +52,9 @@ Token* createIdentifer(Tokenizer* tokenizer) {
     p = peek(tokenizer);
   }
 
-  Token_type type = getHashTable(token_hash, getCurWord(tokenizer));
-  if (type != UNKNOWN) {
-    return createToken(type, tokenizer);
+  Token_type* type = (Token_type*)getHashTable(token_hash, getCurWord(tokenizer));
+  if (type != NULL) {
+    return createToken(*type, tokenizer);
   }
   return createToken(IDENTIFIER, tokenizer);
 }

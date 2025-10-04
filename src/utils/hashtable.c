@@ -7,7 +7,7 @@
 #include "utils/hashtable.h"
 #include "tokenizer/tokens.h"
 
-node_t* create_node(const char* key, const Token_type value) {
+node_t* create_node(const char* key, void* value) {
 	
 	node_t* node = malloc(sizeof(node_t) * 1);
 	node->key = malloc(strlen(key) * 1);
@@ -47,7 +47,7 @@ hashtable_t* createHashTable(const unsigned int capacity) {
 	return hashtable;
 }
 
-void addHashTable(hashtable_t* hashtable, const char* key, const Token_type value) {
+void addHashTable(hashtable_t* hashtable, const char* key, void* value) {
 	
 	unsigned int slot = hash(hashtable, key);
 		
@@ -75,14 +75,14 @@ void addHashTable(hashtable_t* hashtable, const char* key, const Token_type valu
 	hashtable->size += 1;
 }
 
-Token_type getHashTable(hashtable_t* hashtable, const char* key) {
+void* getHashTable(hashtable_t* hashtable, const char* key) {
 	
 	unsigned int slot = hash(hashtable, key);
 
 	node_t* node = hashtable->nodes[slot];
 
 	if (node == NULL) {
-		return UNKNOWN; 
+		return NULL; 
 	} 
 	
 	while (node != NULL) { 
@@ -94,7 +94,7 @@ Token_type getHashTable(hashtable_t* hashtable, const char* key) {
 		node = node->next;
 	}
 
-	return UNKNOWN;
+	return NULL;
 }
 
 bool removeHashTable(hashtable_t* hashtable, const char* key) {
