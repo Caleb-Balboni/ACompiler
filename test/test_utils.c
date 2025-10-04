@@ -1,6 +1,8 @@
 #include <criterion/criterion.h>
 #include "utils/arraylist.h"
 #include "utils/hashtable.h"
+#include <stdbool.h>
+
 // test for init array
 Test(arraylist, init) {
   
@@ -73,5 +75,27 @@ Test(hashtable, append) {
     sprintf(key, "%d", i);
     int* value = (int*)getHashTable(table, key);
     cr_assert(i == *value);
+  }
+}
+
+Test(hashtable, remove) {
+
+  hashtable_t* table = createHashTable(10);
+
+  for (int i = 0; i < 100; i++) {
+    int* value = malloc(sizeof(int));
+    *value = i;
+    char key[4];
+    key[4] = '\0';
+    sprintf(key, "%d", i);
+    addHashTable(table, key, value);
+  }
+
+  for (int i = 0; i < 100; i++) {
+    char key[4];
+    sprintf(key, "%d", i);
+    key[4] = '\0';
+    cr_assert(removeHashTable(table, key) == true);
+    cr_assert(getHashTable(table, key) == NULL);
   }
 }
