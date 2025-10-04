@@ -12,7 +12,7 @@ ArrayList* initArrayList(unsigned int capacity) {
 	return array;
 }
 
-void destoryArrayList(ArrayList* array) {
+void destroyArrayList(ArrayList* array) {
 
 	for (int i = 0; i < array->length; i++) {
 		free(array->items[i]);	

@@ -21,6 +21,10 @@ int main(int argc, char *argv[]) {
 
 	FILE* source_file;
 	source_file = fopen(argv[1], "r");
+  if (source_file == NULL) {
+    printf("no file inputted");
+    exit(EXIT_FAILURE);
+  }
   unsigned int char_count = getFileCharCount(source_file);
 	printf("welcome to ACompiler\n");
 	// testing functions of hash table will move to a seperate test file
@@ -30,20 +34,5 @@ int main(int argc, char *argv[]) {
 		Token* temp = (Token*)getArrayList(array, i);
 		printf("[%d] TOKEN: type=%d, lexeme='%s'\n", i, temp->type, temp->lexeme);
 	}
-	hashtable_t* table = createHashTable(100);
-	if (table == NULL) {
-		printf("table is NULL");
-		return 1;
-	}
-	addHashTable(table, "test", RETURN);
-	addHashTable(table, ";", SEMICOLON);
-	Token_type test = getHashTable(table, "test");
-		
-	printf("%d\n", test);
-
-	bool removed = removeHashTable(table, "test");
-
-	
-	printf("%d", removed);
 	return 0;
 }
