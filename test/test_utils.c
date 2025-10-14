@@ -51,7 +51,8 @@ Test(arraylist, append) {
   
   destroyArrayList(test_arr);
 }
-  
+
+// tests init a hashtable
 Test(hashtable, init) {
   hashtable_t* table = createHashTable(10);
   cr_assert(table != NULL);
@@ -59,6 +60,7 @@ Test(hashtable, init) {
   cr_assert(table->capacity == 10);
 }
 
+// test appending to a hashtable
 Test(hashtable, append) {
   hashtable_t* table = createHashTable(1);
 
@@ -78,6 +80,7 @@ Test(hashtable, append) {
   }
 }
 
+// test removing from a hashtable
 Test(hashtable, remove) {
 
   hashtable_t* table = createHashTable(10);
