@@ -21,6 +21,8 @@ typedef struct {
 // @return - true if the chars match, false otherwise
 bool match(Tokenizer* tokenizer, char c);
 
+Token_Type* createTokenType(Token_type type);
+
 // init a hashmap with all the string keys to token types
 void initTokenMap(void);
 

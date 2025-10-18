@@ -1,5 +1,7 @@
 #include <criterion/criterion.h>
-
+#include <include/tokenizer.h>
+#include <include/tokens.h>
+#include <include/arraylist.h>
 
 Test(tokenizer, tokenizer) {
 
