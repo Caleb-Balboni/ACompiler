@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "utils/arraylist.h"
 
-ArrayList* initArrayList(unsigned int capacity) {
+ArrayList* init_list(unsigned int capacity) {
 	
 	ArrayList* array = malloc(sizeof(ArrayList) * 1);
 	array->length = 0;
@@ -12,7 +12,7 @@ ArrayList* initArrayList(unsigned int capacity) {
 	return array;
 }
 
-void destroyArrayList(ArrayList* array) {
+void destroy_list(ArrayList* array) {
 
 	for (int i = 0; i < array->length; i++) {
 		free(array->items[i]);	
@@ -25,7 +25,7 @@ void destroyArrayList(ArrayList* array) {
   array = NULL;
 }
 
-void* getArrayList(ArrayList* array, unsigned int index) {
+void* get_list(ArrayList* array, unsigned int index) {
 	
 	if (index < array->length) {
 		return array->items[index];
@@ -34,7 +34,7 @@ void* getArrayList(ArrayList* array, unsigned int index) {
 	return NULL;
 }
 
-bool appendArrayList(ArrayList* array, void* item) {
+bool add_list(ArrayList* array, void* item) {
 	
 	if (!array) return false;
 	if (array->length == array->capacity) {

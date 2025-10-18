@@ -1,11 +1,13 @@
 #ifndef TOKENS
 #define TOKENS
 
+#define MAX_LEXEME 64
 #include <stdio.h>
 #include "utils/arraylist.h"
 
 typedef enum {
 	T_UNKNOWN,
+  T_EOF,
   // LONGER TYPE LEXMES
   T_IDENTIFIER,
   T_IF,
@@ -14,7 +16,9 @@ typedef enum {
   T_FUNC,
   T_BYTE,
   T_WORD,
+  T_VOID,
   T_DWORD,
+  T_QWORD,
   T_STRING_LIT,
 	T_NUMBER_LIT,
   T_RETURN,
@@ -44,7 +48,7 @@ typedef enum {
 
 typedef struct {
 	Token_type type;
-	char* lexeme;
+	char lexeme[MAX_LEXEME];
 	size_t length;
 	unsigned int line, col;
 

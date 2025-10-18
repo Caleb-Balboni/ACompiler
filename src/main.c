@@ -31,8 +31,10 @@ int main(int argc, char *argv[]) {
 	ArrayList* array = tokenize(source_file, char_count);
 	printf("arraylist length = %d\n", array->length);
 	for (int i = 0; i < array->length; i++) {
-		Token* temp = (Token*)getArrayList(array, i);
+		Token* temp = (Token*)get_list(array, i);
 		printf("[%d] TOKEN: type=%d, lexeme='%s'\n", i, temp->type, temp->lexeme);
 	}
+  destroy_list(array);
+  fclose(source_file);
 	return 0;
 }
