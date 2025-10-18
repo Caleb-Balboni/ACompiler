@@ -9,15 +9,23 @@
 
 static hashtable_t* token_hash = NULL;
 
+Token_type* createTokenType(Token_type type) {
+  Token_type* t = malloc(sizeof(Token_type));
+  return t;
+}
+
 void initTokenMap(void) {
 	
 	token_hash = createHashTable(100);
-  Token_type* t = malloc(sizeof(Token_type));
-  *t = INTEGER;
-	addHashTable(token_hash, "int", t); 
-  Token_type* tt = malloc(sizeof(Token_type));
-  *tt = RETURN;
-	addHashTable(token_hash, "return", tt);
+	addHashTable(token_hash, "createb", createTokenType(CREATE)); 
+  addHashTable(token_hash, "createw", createTokenType(CREATE));
+  addHashTable(token_hash, "createl", createTokenType(CREATE));
+  addHashTable(token_hash, "createq", createTokenType(CREATE));
+  addHashTable(token_hash, "createp", createTokenType(CREATE));
+  addHashTable(token_hash, "return", createTokenType(RETURN));
+  addHashTable(token_hash, "if", createTokenType(IF));
+  addHashTable(token_hash, "else", createTokenType(ELSE));
+  addHashTable(token_hash, "func", createTokenType(FUNC));
 }
 
 char* getCurWord(Tokenizer* tokenizer) {
@@ -164,6 +172,9 @@ Token* scanToken(Tokenizer* tokenizer) {
       break;
     case '/':
       return createToken(DIVIDE, tokenizer);
+      break;
+    case ':':
+      return createToken(COLON, tokenizer);
       break;
     case '!':
       return createToken(match(tokenizer, '=') ? NOT_EQUAL : NOT, tokenizer);

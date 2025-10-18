@@ -1,0 +1,57 @@
+# This language maxes the process of writing assembly slightly simpler without removing all its abilties
+
+1. Creating functions
+main: <-- this creates main function in assembly
+
+- func main {
+
+}
+
+2. Creating variables
+ex: movq -8(%rbp), 0
+
+- createb foo; <-- creates a variable foo that has 1 byte of memory
+- createw foo; <-- creates a variable foo that has 2 bytes of memory
+- createl foo; <-- creates a varibale foo that has 4 bytes of memory
+- createq foo; <-- creates a variable foo that has 8 bytes of memory
+- create& foo; <-- creates a varibale foo that holds a memory address (always 8 bytes)
+
+3. Initalizing variables
+
+ex: movq %rsi, 0
+
+- foo = 0; <-- initalizes a already created varibale foo with the value of zero
+- createq foo = 0; <-- creates a 8 byte var foo, and initalizes it with the value of zero
+
+ex: assignment of address, and access of memory of assignment var
+- create& foo = &temp;
+x = (foo) <-- brackets indicate we want the value of the address of foo
+
+3. If/Else statments
+
+ex: cmpq 0, 0
+    je example
+
+- if (foo == 0) {
+  // do this
+} else {
+  // do this
+}
+
+- if (f != 0) {
+  // do this
+} else {
+  // do this
+}
+
+- if (foo > 0) {
+  // do this
+} else {
+  // do this
+}
+
+- if (foo < 0) {
+  // do this
+} else {
+  // do this
+}
