@@ -36,23 +36,25 @@ unsigned int hash(hashtable_t* hashtable, const char* key);
 // constructor for the hashtable
 // @param: capacity - the maximum capacity for this hashtable
 // @return: a pointer to the newly created hash table
-hashtable_t* createHashTable(const unsigned int capacity);
+hashtable_t* create_ht(const unsigned int capacity);
 
 // adds a value - key pair to the hashtable
 // @param hashtable - the hashtable to add to
 // @param key - the key for the value in the hash table
 // @param value - the value the given key will be attached to
-void addHashTable(hashtable_t* hashtable, const char* key, void* value);
+void add_ht(hashtable_t* hashtable, const char* key, void* value);
 
 // returns a value from the hash table based upon a given key
 // @param hashtable - the hashtable to search
 // @param key - the key in the key value pair
 // @return: the value the given key is pointing to
-void* getHashTable(hashtable_t* hashtable, const char* key);
+void* get_ht(hashtable_t* hashtable, const char* key);
 
 // remove a value from the hashtable given a paricular key
 // @param hashtable - the hashtable to be removed from
 // @param key - the key to be removed from the hashtable
-bool removeHashTable(hashtable_t* hashtable, const char* key);
+bool remove_ht(hashtable_t* hashtable, const char* key);
+
+bool destroy_ht(hashtable_t* hashtable);
 
 #endif

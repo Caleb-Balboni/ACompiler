@@ -21,7 +21,7 @@ typedef struct {
 // @return - true if the chars match, false otherwise
 bool match(Tokenizer* tokenizer, char c);
 
-Token_Type* createTokenType(Token_type type);
+Token_type* createTokenType(Token_type type);
 
 // init a hashmap with all the string keys to token types
 void initTokenMap(void);
@@ -43,8 +43,8 @@ char peekNext(Tokenizer* tokenizer);
 // gets the current word of the tokenizer using its start and ending ending
 // and resets the file pointer back to its original place
 // @param tokenizer - the tokenizer to read from
-// @return - the string currently associated with the tokenizer
-char* getCurWord(Tokenizer* tokenizer);
+// @param buf - the buffer to be copied into
+void getCurWord(Tokenizer* tokenizer, char* buf);
 
 // scans the next token and return it
 // @param tokenizer - the tokenizer to use 

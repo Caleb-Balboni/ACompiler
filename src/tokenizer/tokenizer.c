@@ -16,27 +16,29 @@ Token_type* createTokenType(Token_type type) {
 
 void initTokenMap(void) {
 	
-	token_hash = createHashTable(100);
-	addHashTable(token_hash, "createb", createTokenType(CREATE)); 
-  addHashTable(token_hash, "createw", createTokenType(CREATE));
-  addHashTable(token_hash, "createl", createTokenType(CREATE));
-  addHashTable(token_hash, "createq", createTokenType(CREATE));
-  addHashTable(token_hash, "createp", createTokenType(CREATE));
-  addHashTable(token_hash, "return", createTokenType(RETURN));
-  addHashTable(token_hash, "if", createTokenType(IF));
-  addHashTable(token_hash, "else", createTokenType(ELSE));
-  addHashTable(token_hash, "func", createTokenType(FUNC));
+	token_hash = create_ht(100);
+	add_ht(token_hash, "let", createTokenType(T_LET)); 
+  add_ht(token_hash, "VOID", createTokenType(T_VOID));
+  add_ht(token_hash, "BYTE", createTokenType(T_BYTE));
+  add_ht(token_hash, "WORD", createTokenType(T_WORD));
+  add_ht(token_hash, "DWORD", createTokenType(T_DWORD));
+  add_ht(token_hash, "QWORD", createTokenType(T_QWORD));
+  add_ht(token_hash, "return", createTokenType(T_RETURN));
+  add_ht(token_hash, "if", createTokenType(T_IF));
+  add_ht(token_hash, "else", createTokenType(T_ELSE));
+  add_ht(token_hash, "func", createTokenType(T_FUNC));
 }
 
-char* getCurWord(Tokenizer* tokenizer) {
+void getCurWord(Tokenizer* tokenizer, char* buf) {
   unsigned int length = tokenizer->cur_idx - tokenizer->start_idx;
-  char* word = malloc(length + 1);
+  char word[MAX_LEXEME];
   unsigned long saved_idx = ftell(tokenizer->sourcefile);
   fseek(tokenizer->sourcefile, tokenizer->start_idx, SEEK_SET);
   fread(word, 1, length, tokenizer->sourcefile);
   word[length] = '\0';
+  strncpy(buf, word, MAX_LEXEME - 1);
+  buf[MAX_LEXEME - 1] = '\0';
   fseek(tokenizer->sourcefile, saved_idx, SEEK_SET);
-  return word;
 }
 
 Token* createToken(Token_type type, Tokenizer* tokenizer) {
@@ -44,10 +46,7 @@ Token* createToken(Token_type type, Tokenizer* tokenizer) {
 	assert(temp);
 	temp->type = type;
   temp->length = tokenizer->cur_idx - tokenizer->start_idx;
-  temp->lexeme = malloc(temp->length + 1);
-
-  strcpy(temp->lexeme, getCurWord(tokenizer));
-
+  getCurWord(tokenizer, temp->lexeme);
 	temp->col = tokenizer->cur_idx;
 	temp->line = tokenizer->cur_line;
 	return temp;
@@ -59,12 +58,13 @@ Token* createIdentifer(Tokenizer* tokenizer) {
     advance(tokenizer);
     p = peek(tokenizer);
   }
-
-  Token_type* type = (Token_type*)getHashTable(token_hash, getCurWord(tokenizer));
+  char buf[MAX_LEXEME];
+  getCurWord(tokenizer, buf);
+  Token_type* type = (Token_type*)get_ht(token_hash, buf);
   if (type != NULL) {
     return createToken(*type, tokenizer);
   }
-  return createToken(IDENTIFIER, tokenizer);
+  return createToken(T_IDENTIFIER, tokenizer);
 }
 
 Token* createString(Tokenizer* tokenizer) {
@@ -75,11 +75,11 @@ Token* createString(Tokenizer* tokenizer) {
   }
 
   if (p == '\0') {
-    return createToken(UNKNOWN, tokenizer);
+    return createToken(T_UNKNOWN, tokenizer);
   }
 
   tokenizer->start_idx += 1;
-  Token* temp = createToken(STRING_LIT, tokenizer);
+  Token* temp = createToken(T_STRING_LIT, tokenizer);
   advance(tokenizer);
   advance(tokenizer);
   return temp;
@@ -100,7 +100,7 @@ Token* createNumber(Tokenizer* tokenizer) {
     }
   }
 
-  return createToken(NUMBER_LIT, tokenizer);
+  return createToken(T_NUMBER_LIT, tokenizer);
 }
 
 bool match(Tokenizer* tokenizer, char c) {
@@ -144,52 +144,52 @@ Token* scanToken(Tokenizer* tokenizer) {
 	char c = advance(tokenizer);
 	switch(c) {
 		case '(':
-			return createToken(LEFT_PAREN, tokenizer);
+			return createToken(T_LEFT_PAREN, tokenizer);
 			break;
 		case ')':
-			return createToken(RIGHT_PAREN, tokenizer);
+			return createToken(T_RIGHT_PAREN, tokenizer);
 			break;
     case '{':
-      return createToken(LEFT_BRACE, tokenizer);
+      return createToken(T_LEFT_BRACE, tokenizer);
       break;
     case '}':
-      return createToken(RIGHT_BRACE, tokenizer);
+      return createToken(T_RIGHT_BRACE, tokenizer);
       break;
     case ',':
-      return createToken(COMMA, tokenizer);
+      return createToken(T_COMMA, tokenizer);
       break;
     case '.':
-      return createToken(DOT, tokenizer);
+      return createToken(T_DOT, tokenizer);
       break;
     case '-':
-      return createToken(MINUS, tokenizer);
+      return createToken(T_MINUS, tokenizer);
       break;
     case '+':
-      return createToken(PLUS, tokenizer);
+      return createToken(T_PLUS, tokenizer);
       break;
     case '*':
-      return createToken(STAR, tokenizer);
+      return createToken(T_STAR, tokenizer);
       break;
     case '/':
-      return createToken(DIVIDE, tokenizer);
+      return createToken(T_DIVIDE, tokenizer);
       break;
     case ':':
-      return createToken(COLON, tokenizer);
+      return createToken(T_COLON, tokenizer);
       break;
     case '!':
-      return createToken(match(tokenizer, '=') ? NOT_EQUAL : NOT, tokenizer);
+      return createToken(match(tokenizer, '=') ? T_NOT_EQUAL : T_NOT, tokenizer);
       break;
     case '>':
-      return createToken(match(tokenizer, '=') ? GREATER_EQUAL : GREATER, tokenizer);
+      return createToken(match(tokenizer, '=') ? T_GREATER_EQUAL : T_GREATER, tokenizer);
       break;
     case '<':
-      return createToken(match(tokenizer, '=') ? LESS_EQUAL : LESS, tokenizer);
+      return createToken(match(tokenizer, '=') ? T_LESS_EQUAL : T_LESS, tokenizer);
       break;
     case '=':
-      return createToken(match(tokenizer, '=') ? EQUAL_EQUAL : EQUAL, tokenizer);
+      return createToken(match(tokenizer, '=') ? T_EQUAL_EQUAL : T_EQUAL, tokenizer);
       break;
     case ';':
-      return createToken(SEMICOLON, tokenizer);
+      return createToken(T_SEMICOLON, tokenizer);
     case '"':
       return createString(tokenizer);
       break;
@@ -208,7 +208,9 @@ Token* scanToken(Tokenizer* tokenizer) {
       if (isdigit(c)) {
         return createNumber(tokenizer);
       }
-      printf("Unidentifiable type %s\n", getCurWord(tokenizer));
+      char buf[MAX_LEXEME];
+      getCurWord(tokenizer, buf);
+      printf("Unidentifiable type %s\n", buf);
       exit(EXIT_FAILURE);
       break;
   }
@@ -221,26 +223,34 @@ ArrayList* tokenize(FILE* sourcefile, unsigned long char_count) {
 	assert(sourcefile != NULL && "no inputted source file");
 	initTokenMap();
 	
-	Tokenizer* tokenizer;
+	Tokenizer* tokenizer = malloc(sizeof(Tokenizer));
 	tokenizer->sourcefile = sourcefile;
   tokenizer->filesize = char_count;
   tokenizer->cur = fgetc(sourcefile);
 	tokenizer->start_idx = 0;
 	tokenizer->cur_idx = 0;
 	tokenizer->cur_line = 0;	
-	ArrayList* tokens = initArrayList(100);
+	ArrayList* tokens = init_list(100);
 	assert(tokens != NULL && "Token list was null");
 
 	while(tokenizer->cur_idx < tokenizer->filesize) {
 		tokenizer->start_idx = tokenizer->cur_idx;
     Token* temp = scanToken(tokenizer);
     if (temp != NULL) {
-      appendArrayList(tokens, temp);
+      add_list(tokens, temp);
     }
 	}
-	
-	free(token_hash);
-	
+  Token* eof = malloc(sizeof(Token));
+  eof->type = T_EOF;
+  strncpy(eof->lexeme, "eof", MAX_LEXEME - 1);
+  eof->lexeme[MAX_LEXEME] = '\0';
+  eof->length = 3;
+  eof->line = -1;
+  eof->col = -1;
+  add_list(tokens, eof);	
+  destroy_ht(token_hash);
+  token_hash = NULL;
+  free(tokenizer);
 	return tokens;
 }
 

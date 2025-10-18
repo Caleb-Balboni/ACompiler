@@ -33,7 +33,7 @@ unsigned int hash(hashtable_t* hashtable, const char* key) {
 	return value;	
 }
 
-hashtable_t* createHashTable(const unsigned int capacity) {
+hashtable_t* create_ht(const unsigned int capacity) {
 	
 	hashtable_t* hashtable = malloc(sizeof(hashtable_t) * 1);
 	hashtable->capacity = capacity;
@@ -43,7 +43,7 @@ hashtable_t* createHashTable(const unsigned int capacity) {
 	return hashtable;
 }
 
-void addHashTable(hashtable_t* hashtable, const char* key, void* value) {
+void add_ht(hashtable_t* hashtable, const char* key, void* value) {
 	
 	unsigned int slot = hash(hashtable, key);
 		
@@ -71,7 +71,7 @@ void addHashTable(hashtable_t* hashtable, const char* key, void* value) {
 	hashtable->size += 1;
 }
 
-void* getHashTable(hashtable_t* hashtable, const char* key) {
+void* get_ht(hashtable_t* hashtable, const char* key) {
 	
 	unsigned int slot = hash(hashtable, key);
 
@@ -93,7 +93,7 @@ void* getHashTable(hashtable_t* hashtable, const char* key) {
 	return NULL;
 }
 
-bool removeHashTable(hashtable_t* hashtable, const char* key) {
+bool remove_ht(hashtable_t* hashtable, const char* key) {
 	
 	unsigned int slot = hash(hashtable, key);
 
@@ -121,4 +121,26 @@ bool removeHashTable(hashtable_t* hashtable, const char* key) {
 	}
 
 	return false;
+}
+
+bool destroy_ht(hashtable_t* hashtable) {
+  
+  for (int i = 0; i < hashtable->capacity; i++) {
+    
+    if (hashtable->nodes[i] == NULL) {
+      continue;
+    }
+    node_t* next = hashtable->nodes[i];
+
+    while (next != NULL) {
+      node_t* temp = next->next;
+      free(next->key);
+      free(next->value);
+      free(next);
+      next = temp;
+    }
+  }
+
+  free(hashtable->nodes);
+  free(hashtable);
 }
