@@ -1,6 +1,4 @@
-GRAMMER:
-
-
+GRAMMER (in progress will be updated as language progresses):
 
 Program         ::= { TopDecl }
 
@@ -8,37 +6,57 @@ TopDecl         ::= FuncDecl | VarDecl
 
 FuncDecl        ::= "let" [ CastExpr ] Ident '(' [ ParamList ] ')' Block
 
+EXAMPLE:
+fn foo((WORD)x, (WORD)y) {
+    // body
+}
+
+fn (WORD) foo(x, y) {
+    // body, x and y are defaulted to QUADWORDS
+}
+
 ParamList       ::= Param { ',' Param }
 
 Param           ::= [ CastExpr ] Ident
 
 Block           ::= '{' { Stmt } '}'
 
-Stmt            ::= Block | IfStmt | ReturnStmt | VarDecl | ExprStmt
+Stmt            ::= Block | IfStmt | ReturnStmt | VarDecl | AssignExpr 
 
-IfStmt          ::= "if" '(' Expr ')' Block [ "else" Block ]
+IfStmt          ::= "if" '(' BExpr ')' Block [ "else" Block ]
 
-ReturnStmt      ::= "return" '(' Expr ')' ';'
+ReturnStmt      ::= "return" '(' AExpr ')' ';'
 
 VarDecl         ::= "let" [ CastExpr ] Ident [ '=' [ CastExpr ] Expr ] ';'
 
-ExprStmt        ::= Expr ';'
+EXAMPLE:
+let (WORD&) a = d; <-- sets e equal to the address of d
+let (BYTE) b = 1;
+let (WORD) c = 2;
+let (DWORD) d = 3;
+let d = 4; <-- this defaults to a QUADWORD
 
-Type            ::= '(' PrimType | AdrType ')'
+BExpr           ::= RelExpr <-- A boolean expression
 
-PrimType        ::= "VOID" | "BYTE" | "WORD" | "DWORD" | "QWORD"
+AExpr           ::= AddExpr <-- binary/unary operation
 
-AdrType         ::= "VOID&" | "BYTE&" | "WORD&" | "DWORD&" | "QWORD&"
+Expr            ::= AssignExpr | AExpr
 
-Expr            ::= AddExpr
+ExprStmt        ::= AssignExpr | CallExpr ';'
+
+Type            ::= PrimType | AdrType 
+
+PrimType        ::= "BYTE" | "WORD" | "DWORD" | "QWORD"
+
+AdrType         ::= "BYTE&" | "WORD&" | "DWORD&" | "QWORD&"
 
 CastExpr        ::= '(' Type ')'
 
-AssignExpr      ::= CondExpr [ AssignOp ]
+AssignExpr      ::= Ident AssignOp
 
-AssignOp        ::= RelExpr [ '=' AssignExpr ]
+AssignOp        ::= Ident '=' [ AddExpr | AssignOp ]
 
-RelExpr         ::= AddExpr ( '<' | '<=' | '>' | '>=' | '==' ) Expr
+RelExpr         ::= AddExpr ( '<' | '<=' | '>' | '>=' | '==' ) AddExpr 
 
 AddExpr         ::= MulExpr { ( '+' | '-' ) MulExpr }
 

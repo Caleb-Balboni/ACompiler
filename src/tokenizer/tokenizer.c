@@ -18,7 +18,6 @@ void initTokenMap(void) {
 	
 	token_hash = create_ht(100);
 	add_ht(token_hash, "let", createTokenType(T_LET)); 
-  add_ht(token_hash, "VOID", createTokenType(T_VOID));
   add_ht(token_hash, "BYTE", createTokenType(T_BYTE));
   add_ht(token_hash, "WORD", createTokenType(T_WORD));
   add_ht(token_hash, "DWORD", createTokenType(T_DWORD));
@@ -26,7 +25,7 @@ void initTokenMap(void) {
   add_ht(token_hash, "return", createTokenType(T_RETURN));
   add_ht(token_hash, "if", createTokenType(T_IF));
   add_ht(token_hash, "else", createTokenType(T_ELSE));
-  add_ht(token_hash, "func", createTokenType(T_FUNC));
+  add_ht(token_hash, "fn", createTokenType(T_FUNC));
 }
 
 void getCurWord(Tokenizer* tokenizer, char* buf) {
@@ -176,6 +175,8 @@ Token* scanToken(Tokenizer* tokenizer) {
     case ':':
       return createToken(T_COLON, tokenizer);
       break;
+    case '&':
+      return createToken(T_AND, tokenizer);
     case '!':
       return createToken(match(tokenizer, '=') ? T_NOT_EQUAL : T_NOT, tokenizer);
       break;
