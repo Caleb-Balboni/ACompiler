@@ -4,7 +4,7 @@ Program         ::= { TopDecl }
 
 TopDecl         ::= FuncDecl | VarDecl
 
-FuncDecl        ::= "let" [ CastExpr ] Ident '(' [ ParamList ] ')' Block
+FuncDecl        ::= "fn" [ CastExpr ] Ident '(' [ ParamList ] ')' Block
 
 EXAMPLE:
 fn foo((WORD)x, (WORD)y) {
