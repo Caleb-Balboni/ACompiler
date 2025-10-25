@@ -638,6 +638,30 @@ src/utils/hashtable.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/utils/hashtable.c.s
 .PHONY : src/utils/hashtable.c.s
 
+src/utils/stack.o: src/utils/stack.c.o
+.PHONY : src/utils/stack.o
+
+# target to build an object file
+src/utils/stack.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/utils/stack.c.o
+.PHONY : src/utils/stack.c.o
+
+src/utils/stack.i: src/utils/stack.c.i
+.PHONY : src/utils/stack.i
+
+# target to preprocess a source file
+src/utils/stack.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/utils/stack.c.i
+.PHONY : src/utils/stack.c.i
+
+src/utils/stack.s: src/utils/stack.c.s
+.PHONY : src/utils/stack.s
+
+# target to generate assembly for a file
+src/utils/stack.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/utils/stack.c.s
+.PHONY : src/utils/stack.c.s
+
 test/test_utils.o: test/test_utils.c.o
 .PHONY : test/test_utils.o
 
@@ -715,6 +739,9 @@ help:
 	@echo "... src/utils/hashtable.o"
 	@echo "... src/utils/hashtable.i"
 	@echo "... src/utils/hashtable.s"
+	@echo "... src/utils/stack.o"
+	@echo "... src/utils/stack.i"
+	@echo "... src/utils/stack.s"
 	@echo "... test/test_utils.o"
 	@echo "... test/test_utils.i"
 	@echo "... test/test_utils.s"

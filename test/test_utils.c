@@ -1,7 +1,9 @@
+#include <stdio.h>
 #include <criterion/criterion.h>
+#include <stdbool.h>
 #include "utils/arraylist.h"
 #include "utils/hashtable.h"
-#include <stdbool.h>
+#include "utils/stack.h"
 
 // test for init array
 Test(arraylist, init) {
@@ -101,4 +103,25 @@ Test(hashtable, remove) {
     cr_assert(remove_ht(table, key) == true);
     cr_assert(get_ht(table, key) == NULL);
   }
+}
+
+Test(stack, init) {
+  stack_t* stack = init_stack();
+  cr_assert(stack != NULL);
+  cr_assert(stack->head == NULL);
+  delete_stack(stack);
+}
+
+Test(stack, pushandpop) {
+  stack_t* stack = init_stack();
+  int arr[5] = {5, 4, 3, 2, 1};
+  for (int i = 0; i < 5; i++) {
+    push_stack(stack, &arr[i]);
+  }
+  
+  for (int i = 0; i < 5; i++) {
+    int x = *(int*)pop_stack(stack);
+    cr_assert(x == arr[4 - i]);
+  }
+  delete_stack(stack); 
 }
