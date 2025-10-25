@@ -150,12 +150,56 @@ Node* mk_program_decl(ArrayList* nodes) {
   return n;
 }
 
-Node* parse_func_param(Parser* parser) {
-  assert(0 && "TODO: this function is unimplemented");
-}
-
-Node* parse_var_t(Parser* parser) {
-  assert(0 && "TODO: this function is unimplemented");
+Node* parse_var_type(Parser* parser) {
+  Node* n = malloc(sizeof(Node));
+  Token* t = p_peek(parser);
+  var_t variable;
+  n->type = AST_TYPE_VAR;
+  if (p_match(t, T_AND)) {
+    Token_type type = p_advance(parser);
+    variable.is_adr = true;
+    switch(type) {
+      case T_BYTE:
+        variable.type_adr = ADR_BYTE;
+        break;
+      case T_WORD:
+        variable.type_adr = ADR_WORD;
+        break;
+      case T_DWORD:
+        variable.type_adr = ADR_DWORD;
+        break;
+      case T_QWORD:
+        variable.type_adr = ADR_QWORD;
+        break;
+      default:
+        return NULL;
+    }
+  } else {
+    variable.is_adr = false;
+    switch(t->type) {
+      case T_VOID:
+        variable.type = LIT_VOID;
+        break;
+      case T_BYTE:
+        variable.type = LIT_BYTE;
+        break;
+      case T_WORD:
+        variable.type = LIT_WORD;
+        break;
+      case T_DWORD:
+        variable.type = LIT_DWORD;
+        break;
+      case T_QWORD:
+        variable.type = LIT_QWORD;
+        break;
+      default:
+        variable.type = LIT_QWORD;
+        break;
+    }
+  }
+  p_advance(parser);
+  n->variable_t = variable;
+  return n;
 }
 
 Node* parse_identifer_expr(Parser* parser) {
@@ -202,12 +246,53 @@ Node* parse_var_decl(Parser* parser) {
   assert(0 && "TODO: this function is unimplemented");
 }
 
-Node* parse_func_decl(Parser* parser) {
+Node* parse_func_param(Parser* parser) {
   assert(0 && "TODO: this function is unimplemented");
 }
 
+ArrayList* parse_all_func_params(Parser* parser) {
+  ArrayList* params = init_list(32);
+  if (p_match(p_peek(parser), T_LEFT_PAREN) {
+    // pick up from here
+    // here I need to check if the next one is an identifer or a type (like BYTE)
+    while (p_peek(parser) && !p_match(p_peek(parser), T_RIGHT_PAREN)) {
+      Node* p = parse_func_param(parser);
+      assert(p != NULL);
+      add_list(params, p);
+    }
+  } else {
+    return NULL;
+  }
+}
+
+Node* parse_func_type(Parser* parser) {
+  Node* n = malloc(sizeof(Node));
+  n->type = AST_TYPE_FUNC;
+  func_type ft;
+  ft.ret_t = parse_var_type(parser);
+  assert(ft.ret_t != NULL);
+  ft.params = parse_all_func_params(parser);
+  assert(ft.params != NULL);
+  n->function_t = ft;
+  return n;
+}
+
+Node* parse_func_decl(Parser* parser) {
+  if (p_match(p_peek(parser), T_FUNC)) {
+    p_advance(parser);
+    Node* ft = parse_func_type(parser);
+  } else {
+    return parse_var_decl(parser);
+  }
+}
+
 Node* parse_program(Parser* parser) {
-  assert(0 && "TODO: this function is unimplemented");
+  ArrayList* nodes = init_list(128);
+  while(!p_is_end(parser)) {
+    Node* temp = parse_func_decl(parser);
+    assert(temp != NULL);
+    add_list(nodes, temp);
+  }
 }
 
 Parser* init_parser(ArrayList* tokens) {
