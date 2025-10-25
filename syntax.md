@@ -4,20 +4,20 @@ Program         ::= { TopDecl }
 
 TopDecl         ::= FuncDecl | VarDecl
 
-FuncDecl        ::= "fn" [ CastExpr ] Ident '(' [ ParamList ] ')' Block
+FuncDecl        ::= "fn" [ PrimType | AdrType ] Ident '(' [ ParamList ] ')' Block
 
 EXAMPLE:
-fn foo((WORD)x, (WORD)y) {
+fn foo(WORD x, WORD y) {
     // body
 }
 
-fn (WORD) foo(x, y) {
+fn WORD foo(x, y) {
     // body, x and y are defaulted to QUADWORDS
 }
 
 ParamList       ::= Param { ',' Param }
 
-Param           ::= [ CastExpr ] Ident
+Param           ::= [ PrimType | AdrType ] Ident
 
 Block           ::= '{' { Stmt } '}'
 
@@ -27,7 +27,7 @@ IfStmt          ::= "if" '(' BExpr ')' Block [ "else" Block ]
 
 ReturnStmt      ::= "return" '(' AExpr ')' ';'
 
-VarDecl         ::= "let" [ CastExpr ] Ident [ '=' [ CastExpr ] Expr ] ';'
+VarDecl         ::= "let" [ PrimType | AdrType ] Ident [ '=' [ CastExpr ] Expr ] ';'
 
 EXAMPLE:
 let (WORD&) a = d; <-- sets e equal to the address of d

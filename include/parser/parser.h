@@ -65,7 +65,6 @@ typedef enum {
   AST_FUNC_PARAM,
   // types
   AST_TYPE_VAR,
-  AST_TYPE_VAR_ADR,
   AST_TYPE_FUNC,
 } ast_t;
 
@@ -203,7 +202,7 @@ Node* mk_func_param(Node* ident, Node* type);
 // @param is_adr - determines if this is an address var, or not
 // @param type_adr - if this is an address type, this will hold the adr type
 // @param type - if thsi is NOT and address type, this will hold the var type
-Node* mk_var_t(bool is_adr, lit_adr_t type_adr, lit_t type);
+Node* mk_var_type(bool is_adr, lit_adr_t type_adr, lit_t type);
 
 // creates a new return expression
 // @param return_val - the expression that dictates the return expression value
@@ -346,6 +345,16 @@ Node* parse_block_stmt(Parser* parser);
 // @param parser - the parser to parse from
 // @return - the parsed node
 Node* parse_var_decl(Parser* parser);
+
+// parses the entire list of function params
+// @param parser - the parser to parse from
+// @return - an array of function params
+ArrayList* parse_all_func_params(Parser* parser);
+
+// parses the type of the function
+// @param parser - the parser to parse from
+// @return - the parsed node
+Node* parse_func_type(Parser* parser);
 
 // parses a function decleration
 // @param parser - the parser to parse from
