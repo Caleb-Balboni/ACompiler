@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/utils.dir/src/utils/arraylist.c.o.d"
   "CMakeFiles/utils.dir/src/utils/hashtable.c.o"
   "CMakeFiles/utils.dir/src/utils/hashtable.c.o.d"
+  "CMakeFiles/utils.dir/src/utils/stack.c.o"
+  "CMakeFiles/utils.dir/src/utils/stack.c.o.d"
   "libutils.a"
   "libutils.pdb"
 )

@@ -100,19 +100,35 @@ CMakeFiles/utils.dir/src/utils/arraylist.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/utils.dir/src/utils/arraylist.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/masterdonut/Projects/C-Projects/ACompiler/src/utils/arraylist.c -o CMakeFiles/utils.dir/src/utils/arraylist.c.s
 
+CMakeFiles/utils.dir/src/utils/stack.c.o: CMakeFiles/utils.dir/flags.make
+CMakeFiles/utils.dir/src/utils/stack.c.o: /home/masterdonut/Projects/C-Projects/ACompiler/src/utils/stack.c
+CMakeFiles/utils.dir/src/utils/stack.c.o: CMakeFiles/utils.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/utils.dir/src/utils/stack.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/utils.dir/src/utils/stack.c.o -MF CMakeFiles/utils.dir/src/utils/stack.c.o.d -o CMakeFiles/utils.dir/src/utils/stack.c.o -c /home/masterdonut/Projects/C-Projects/ACompiler/src/utils/stack.c
+
+CMakeFiles/utils.dir/src/utils/stack.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/utils.dir/src/utils/stack.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/masterdonut/Projects/C-Projects/ACompiler/src/utils/stack.c > CMakeFiles/utils.dir/src/utils/stack.c.i
+
+CMakeFiles/utils.dir/src/utils/stack.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/utils.dir/src/utils/stack.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/masterdonut/Projects/C-Projects/ACompiler/src/utils/stack.c -o CMakeFiles/utils.dir/src/utils/stack.c.s
+
 # Object files for target utils
 utils_OBJECTS = \
 "CMakeFiles/utils.dir/src/utils/hashtable.c.o" \
-"CMakeFiles/utils.dir/src/utils/arraylist.c.o"
+"CMakeFiles/utils.dir/src/utils/arraylist.c.o" \
+"CMakeFiles/utils.dir/src/utils/stack.c.o"
 
 # External object files for target utils
 utils_EXTERNAL_OBJECTS =
 
 libutils.a: CMakeFiles/utils.dir/src/utils/hashtable.c.o
 libutils.a: CMakeFiles/utils.dir/src/utils/arraylist.c.o
+libutils.a: CMakeFiles/utils.dir/src/utils/stack.c.o
 libutils.a: CMakeFiles/utils.dir/build.make
 libutils.a: CMakeFiles/utils.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C static library libutils.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C static library libutils.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/utils.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/utils.dir/link.txt --verbose=$(VERBOSE)
 

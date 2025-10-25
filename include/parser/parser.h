@@ -62,6 +62,7 @@ typedef enum {
   AST_CALL,
   AST_CAST,
   AST_RETURN,
+  AST_FUNC_PARAM,
   // types
   AST_TYPE_VAR,
   AST_TYPE_VAR_ADR,
@@ -80,7 +81,6 @@ typedef struct {
  
 // Variable decleration node
 typedef struct {
-
   const char* name;
   Node* type;
   Node* assign; 
@@ -88,9 +88,8 @@ typedef struct {
 
 // Function delleration node
 typedef struct {
-
   const char* name;
-  func_t type;
+  Node* type;
   Node* block;
 } func_decl;
 
@@ -98,12 +97,10 @@ typedef struct {
 
 // Block statment node
 typedef struct {
-
   ArrayList* nodes;
 } block_stmt;
 
 typedef struct {
-
   Node* cond;
   Node* then_branch;
   Node* else_branch;
@@ -112,18 +109,15 @@ typedef struct {
 // EXPRESSION STRUCTS
 
 typedef struct {
-
   const char* name; // name of identifer
 } identifier_expr;
 
 typedef struct {
-
   long num_value;
   const char* str_value; 
 } literal_expr;
 
 typedef struct {
-
   unary_expr_t op;
   Node* expr;
 } unary_expr;
@@ -166,13 +160,12 @@ typedef struct {
 
 typedef struct {
   Node* ret_t; // will be a var_type
-  ArrayList* params; // will be func_param (s)
+  ArrayList* params; // will be func_param
 } func_type;
 
 
 // MAIN NODE DEFENITION
 struct Node {
-
   ast_t type;
   union {
     // declerations
@@ -192,9 +185,9 @@ struct Node {
     cast_expr castExpr;
     return_expr returnExpr;
     // types
-    var_type varType;
+    var_type variable_t;
+    func_type function_t;
   };
-
 };
 
 // creates a new function type 
@@ -376,9 +369,14 @@ typedef struct {
 // @return - the newly created parser
 Parser* init_parser(ArrayList* tokens);
 
+// returns whether or not the parser has gone through all tokens
+// @param parser - the parser to checks
+// @return - true if parser has gone through all tokens, false otherwise
+bool p_is_end(Parser* parser);
+
 // advances the given parser foward one token 
 // @param parser - the parser to advances
-void p_advance(Parser* parser);
+Token* p_advance(Parser* parser);
 
 // peeks at the incoming token of the parser
 // @param parser - the parser to peek into
