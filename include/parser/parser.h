@@ -87,7 +87,6 @@ typedef struct {
 
 // Function delleration node
 typedef struct {
-  const char* name;
   Node* type;
   Node* block;
 } func_decl;
@@ -158,6 +157,7 @@ typedef struct {
 } func_param;
 
 typedef struct {
+  Node* ident;
   Node* ret_t; // will be a var_type
   ArrayList* params; // will be func_param
 } func_type;
@@ -192,10 +192,14 @@ struct Node {
 // creates a new function type 
 // @param ret - the return expr of the func
 // @param type - the type of the function param
-Node* mk_func_t(Node* ret, ArrayList* params);
+// @param ident - the identifer expression represent the name of the function
+// @return - the new function type node
+Node* mk_func_t(Node* ret, ArrayList* params, Node* ident);
+
 // creates a new function paramerters
 // @param ident - identifer for this function paramerters
 // @param type - the type of the function parameter
+// @return - the new function param node
 Node* mk_func_param(Node* ident, Node* type);
 
 // creates a new variable type node
@@ -246,28 +250,10 @@ Node* mk_unary_expr(unary_expr_t op, Node* expr);
 Node* mk_literal_expr(long num_value, const char* str_value);
 
 // creates a new identifer expressions
-// @param name - the name of the identifer
+// @param type - the type of the function
+// @param block - the block of ast nodes within the function
 // @return - the newly created identifer expression
-Node* mk_identifer_expr(const char* name);
-
-// creates a new if statment node
-// @param cond - the conditional statment of the node
-// @param then_branch - the expression that execute if cond is true
-// @param else_branch - the expressions that occur if the if statment is not true
-// @return - the newly created if statment
-Node* mk_if_stmt(Node* cond, Node* then_branch, Node* else_branch);
-
-// makes a block statment
-// @param nodes - every expression within the block 
-// @return - the newly created function block
-Node* mk_block_stmt(ArrayList* nodes);
-
-// makes a function declerations
-// @param name - the name of the function
-// @param type - the functions paramerters, and return type
-// @param block - the body of the function
-// @return - the newly created function defenition node
-Node* mk_func_decl(const char* name, Node* type, Node* block);
+Node* mk_func_decl(Node* type, Node* block);
 
 // makes a variable declereation
 // @param name - the name of the newly created variable
@@ -386,6 +372,11 @@ bool p_is_end(Parser* parser);
 // advances the given parser foward one token 
 // @param parser - the parser to advances
 Token* p_advance(Parser* parser);
+
+// checks if a given token is a type token
+// @param token - the token to check 
+// @return - true if the tokens is a var type token false otherwise
+bool is_var_type(Token* token);
 
 // peeks at the incoming token of the parser
 // @param parser - the parser to peek into

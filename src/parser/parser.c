@@ -9,9 +9,9 @@
 #include "include/parser.h"
 #include "include/tokens.h"
 
-Node* mk_func_t(Node* ret, ArrayList* params) {
+Node* mk_func_t(Node* ret, ArrayList* params, Node* ident) {
   Node* n = malloc(sizeof(Node));
-  func_type ft = { .ret_t = ret .params = params };
+  func_type ft = { .ident = ident .ret_t = ret .params = params };
   n->type = AST_TYPE_FUNC;  
   n->function_t = ft;
   return n;
@@ -95,10 +95,12 @@ Node* mk_literal_expr(long num_value, const char* str_value) {
   return n;
 } 
 
-Node* mk_identifer_expr(const char* name) {
+Node* mk_identifer_expr(Token* ident) {
+  Token_type type = ident->type;
+  assert(type == T_IDENTIFIER);
   Node* n = malloc(sizeof(Node));
   n->type = AST_IDENTIFER;
-  identifer_expr ie = { .name = name };
+  identifer_expr ie = { .name = ident->lexeme };
   n->identiferExpr = ie;
   return n;
 }
@@ -126,10 +128,10 @@ Node* mk_block_stmt(ArrayList* nodes) {
   return n;
 }
 
-Node* mk_func_decl(const char* name, Node* type, Node* block) {
+Node* mk_func_decl(Node* type, Node* block) {
   Node* n = malloc(sizeof(Node));
   n->type = AST_FUNC_DECL;
-  func_decl fd = { .name = name .type = type .block = block }; 
+  func_decl fd = { .type = type .block = block }; 
   n->funcDecl = fd;
   return n;
 }
@@ -247,40 +249,45 @@ Node* parse_var_decl(Parser* parser) {
 }
 
 Node* parse_func_param(Parser* parser) {
-  assert(0 && "TODO: this function is unimplemented");
+  Node* type = parse_var_t(parser);
+  Node* ident = mk_ident_expr(p_peek(parser));
+  Node* param = mk_func_param(ident, type);
+  return param;
 }
 
 ArrayList* parse_all_func_params(Parser* parser) {
   ArrayList* params = init_list(32);
   if (p_match(p_peek(parser), T_LEFT_PAREN) {
-    // pick up from here
-    // here I need to check if the next one is an identifer or a type (like BYTE)
-    while (p_peek(parser) && !p_match(p_peek(parser), T_RIGHT_PAREN)) {
+    Token* temp = p_peek(parser);
+    while ((is_var_type(temp) || p_match(temp, T_IDENTIFIER)) && !p_match(temp, T_RIGHT_PAREN)) {
       Node* p = parse_func_param(parser);
       assert(p != NULL);
       add_list(params, p);
+      temp = p_peek(parser);
     }
   } else {
     return NULL;
   }
+  return params;
 }
 
 Node* parse_func_type(Parser* parser) {
-  Node* n = malloc(sizeof(Node));
-  n->type = AST_TYPE_FUNC;
-  func_type ft;
-  ft.ret_t = parse_var_type(parser);
-  assert(ft.ret_t != NULL);
-  ft.params = parse_all_func_params(parser);
-  assert(ft.params != NULL);
-  n->function_t = ft;
-  return n;
+  Node* ret = parse_var_type(parser);
+  Token* ident;
+  if (p_match(p_peek(parser), T_IDENTIFIER)) {
+    ident = mk_identifer_expr(p_peek(parser)) 
+  }
+  ArrayList* params = parse_all_func_params(parser);
+  Node* func_type = mk_func_t(ret, params, ident);
+  return func_type;
 }
 
 Node* parse_func_decl(Parser* parser) {
   if (p_match(p_peek(parser), T_FUNC)) {
     p_advance(parser);
     Node* ft = parse_func_type(parser);
+    Node* block = parse_block(parser):
+    return mk_func_decl(ft, block);
   } else {
     return parse_var_decl(parser);
   }
@@ -293,6 +300,9 @@ Node* parse_program(Parser* parser) {
     assert(temp != NULL);
     add_list(nodes, temp);
   }
+  Node* program = mk_program_decl(nodes);
+  assert(program != NULL);
+  return program;
 }
 
 Parser* init_parser(ArrayList* tokens) {
@@ -329,6 +339,11 @@ Token* p_peek(Parser* parser) {
 
 bool p_match(Token* token, Token_type type) {
   return token->type == type;
+}
+
+bool is_var_type(Token* token) {
+  Token_type tt = token->type;
+  return tt == T_AND || tt == T_BYTE || tt == T_WORD || tt == T_DWORD || tt == T_QWORD;
 }
 
 #endif
