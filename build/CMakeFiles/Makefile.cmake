@@ -91,6 +91,8 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/ContinuousMemCheck.dir/DependInfo.cmake"
   "CMakeFiles/ContinuousSubmit.dir/DependInfo.cmake"
   "CMakeFiles/tokenizer.dir/DependInfo.cmake"
+  "CMakeFiles/parser.dir/DependInfo.cmake"
+  "CMakeFiles/errors.dir/DependInfo.cmake"
   "CMakeFiles/utils.dir/DependInfo.cmake"
   "CMakeFiles/ACompiler.dir/DependInfo.cmake"
   "CMakeFiles/test_all.dir/DependInfo.cmake"

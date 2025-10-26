@@ -504,6 +504,32 @@ tokenizer/fast:
 .PHONY : tokenizer/fast
 
 #=============================================================================
+# Target rules for targets named parser
+
+# Build rule for target.
+parser: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 parser
+.PHONY : parser
+
+# fast build rule for target.
+parser/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parser.dir/build.make CMakeFiles/parser.dir/build
+.PHONY : parser/fast
+
+#=============================================================================
+# Target rules for targets named errors
+
+# Build rule for target.
+errors: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 errors
+.PHONY : errors
+
+# fast build rule for target.
+errors/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/errors.dir/build.make CMakeFiles/errors.dir/build
+.PHONY : errors/fast
+
+#=============================================================================
 # Target rules for targets named utils
 
 # Build rule for target.
@@ -542,6 +568,30 @@ test_all/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_all.dir/build.make CMakeFiles/test_all.dir/build
 .PHONY : test_all/fast
 
+src/errors/errors.o: src/errors/errors.c.o
+.PHONY : src/errors/errors.o
+
+# target to build an object file
+src/errors/errors.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/errors.dir/build.make CMakeFiles/errors.dir/src/errors/errors.c.o
+.PHONY : src/errors/errors.c.o
+
+src/errors/errors.i: src/errors/errors.c.i
+.PHONY : src/errors/errors.i
+
+# target to preprocess a source file
+src/errors/errors.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/errors.dir/build.make CMakeFiles/errors.dir/src/errors/errors.c.i
+.PHONY : src/errors/errors.c.i
+
+src/errors/errors.s: src/errors/errors.c.s
+.PHONY : src/errors/errors.s
+
+# target to generate assembly for a file
+src/errors/errors.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/errors.dir/build.make CMakeFiles/errors.dir/src/errors/errors.c.s
+.PHONY : src/errors/errors.c.s
+
 src/main.o: src/main.c.o
 .PHONY : src/main.o
 
@@ -565,6 +615,30 @@ src/main.s: src/main.c.s
 src/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ACompiler.dir/build.make CMakeFiles/ACompiler.dir/src/main.c.s
 .PHONY : src/main.c.s
+
+src/parser/parser.o: src/parser/parser.c.o
+.PHONY : src/parser/parser.o
+
+# target to build an object file
+src/parser/parser.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parser.dir/build.make CMakeFiles/parser.dir/src/parser/parser.c.o
+.PHONY : src/parser/parser.c.o
+
+src/parser/parser.i: src/parser/parser.c.i
+.PHONY : src/parser/parser.i
+
+# target to preprocess a source file
+src/parser/parser.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parser.dir/build.make CMakeFiles/parser.dir/src/parser/parser.c.i
+.PHONY : src/parser/parser.c.i
+
+src/parser/parser.s: src/parser/parser.c.s
+.PHONY : src/parser/parser.s
+
+# target to generate assembly for a file
+src/parser/parser.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parser.dir/build.make CMakeFiles/parser.dir/src/parser/parser.c.s
+.PHONY : src/parser/parser.c.s
 
 src/tokenizer/tokenizer.o: src/tokenizer/tokenizer.c.o
 .PHONY : src/tokenizer/tokenizer.o
@@ -724,12 +798,20 @@ help:
 	@echo "... NightlyTest"
 	@echo "... NightlyUpdate"
 	@echo "... ACompiler"
+	@echo "... errors"
+	@echo "... parser"
 	@echo "... test_all"
 	@echo "... tokenizer"
 	@echo "... utils"
+	@echo "... src/errors/errors.o"
+	@echo "... src/errors/errors.i"
+	@echo "... src/errors/errors.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/parser/parser.o"
+	@echo "... src/parser/parser.i"
+	@echo "... src/parser/parser.s"
 	@echo "... src/tokenizer/tokenizer.o"
 	@echo "... src/tokenizer/tokenizer.i"
 	@echo "... src/tokenizer/tokenizer.s"

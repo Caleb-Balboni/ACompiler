@@ -3,12 +3,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include "include/arraylist.h"
+#include "utils/arraylist.h"
+#include "tokenizer/tokens.h"
 
 // Variable types
 typedef enum {
   LIT_STRING,
-  LIT_VOID,
   LIT_BYTE,
   LIT_WORD,
   LIT_DWORD,
@@ -53,6 +53,7 @@ typedef enum {
   // statments
   AST_BLOCK,
   AST_IF,
+  AST_RETURN,
   // expressions
   AST_IDENTIFIER,
   AST_LITERAL,
@@ -61,7 +62,6 @@ typedef enum {
   AST_ASSIGN,
   AST_CALL,
   AST_CAST,
-  AST_RETURN,
   AST_FUNC_PARAM,
   // types
   AST_TYPE_VAR,
@@ -80,7 +80,7 @@ typedef struct {
  
 // Variable decleration node
 typedef struct {
-  const char* name;
+  Node* ident;
   Node* type;
   Node* assign; 
 } var_decl;
@@ -142,7 +142,7 @@ typedef struct {
 
 typedef struct {
   Node* return_val;
-} return_expr;
+} return_stmt;
 
 // TYPE STRUCTS
 typedef struct {
@@ -182,12 +182,18 @@ struct Node {
     assign_expr assignExpr;
     call_expr callExpr;
     cast_expr castExpr;
-    return_expr returnExpr;
+    return_stmt returnStmt;
     // types
-    var_type variable_t;
+    func_param funcParam;
+    var_t variable_t;
     func_type function_t;
   };
 };
+
+// makes a identifer expression node
+// @param token - the token representing the name of the expression
+// @return - the identifer expression node
+Node* mk_identifer_expr(Token* token);
 
 // creates a new function type 
 // @param ret - the return expr of the func
@@ -211,7 +217,7 @@ Node* mk_var_type(bool is_adr, lit_adr_t type_adr, lit_t type);
 // creates a new return expression
 // @param return_val - the expression that dictates the return expression value
 // @return - the newly created return expression
-Node* mk_return_expr(Node* return_val); 
+Node* mk_return_stmt(Node* return_val); 
 
 // makes a new cast expressions
 // @param type - the type of the cast
@@ -235,7 +241,7 @@ Node* mk_assign_expr(Node* target, Node* val);
 // @param expr_left - the expression on the left of the operator
 // @param expr_right - the expression on the right of the operator
 // @return - the newly created binary expr
-Node* mk_binary_expr(binary_expr_t op, Node* expr_left, Node* expr_right)
+Node* mk_binary_expr(binary_expr_t op, Node* expr_left, Node* expr_right);
 
 // makes a new unary expression based upon an operator and an expression
 // @param op - the operator on the unary expression
@@ -256,11 +262,18 @@ Node* mk_literal_expr(long num_value, const char* str_value);
 Node* mk_func_decl(Node* type, Node* block);
 
 // makes a variable declereation
-// @param name - the name of the newly created variable
+// @param ident - the identifer for the variable
 // @param type - the type of the param (var_t)
 // @param assign - the exprssion this variable should be assigned to
 // @return - the newly created variable decleration node
-Node* mk_var_decl(const char* name, Node* type, Node* assign);
+Node* mk_var_decl(Node* ident, Node* type, Node* assign);
+
+typedef struct {
+  ArrayList* items;
+  Token* cur_tok;
+  unsigned long long size;
+  unsigned long long idx;
+} Parser;
 
 // makes initial node for the program
 // @param nodes - the list of nodes in the program
@@ -280,7 +293,17 @@ Node* parse_var_t(Parser* parser);
 // parses an identifer expression
 // @param parser - the parser to parse from
 // @return - the parsed node
-Node* parse_indentifer_expr(Pasrser* parser);
+Node* parse_identifier(Parser* parser);
+
+// finds and parsers all stmt
+// @param parser - the parser to parse from
+// @return - the parsed node
+Node* parse_statment(Parser* parser);
+
+// find and parses all statments
+// @param parser - the parser to parse from
+// @return - the parsed node
+Node* parse_expr(Parser* parser);
 
 // parses a literal expression
 // @param parser - the parser to parse from
@@ -310,7 +333,7 @@ Node* parse_assign_expr(Parser* parser);
 // parses a return expression
 // @param parser - the parser to parse from
 // @return - the newly created node
-Node* parse_return_expr(Parser* parser);
+Node* parse_return_stmt(Parser* parser);
 
 // parses a call expression
 // @param parser - the parser to parse from
@@ -352,13 +375,6 @@ Node* parse_func_decl(Parser* parser);
 // @return - the head of the ast
 Node* parse_program(ArrayList* nodes);
 
-typedef struct {
-  ArrayList* items;
-  Token* cur_tok;
-  unsigned long long size;
-  unsigned long long idx;
-} Parser;
-
 // inits the parser with an array of tokens
 // @param tokens - the list of tokens to init the parser with
 // @return - the newly created parser
@@ -388,9 +404,5 @@ Token* p_peek(Parser* parser);
 // @param type - the type of token to match to
 // @return - true if the token matches the type, false otherwise
 bool p_match(Token* token, Token_type type);
-
-// inits the parser with an array of tokens
-// @param tokens - the array of tokens to init the parser with
-void init_parser(ArrayList* tokens);
 
 #endif

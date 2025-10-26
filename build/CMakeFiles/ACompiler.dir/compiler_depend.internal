@@ -15,11 +15,14 @@ ACompiler
  /usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so
  /usr/lib/x86_64-linux-gnu/libc_nonshared.a
  /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles/ACompiler.dir/src/main.c.o
+ /home/masterdonut/Projects/C-Projects/ACompiler/build/liberrors.a
+ /home/masterdonut/Projects/C-Projects/ACompiler/build/libparser.a
  /home/masterdonut/Projects/C-Projects/ACompiler/build/libtokenizer.a
  /home/masterdonut/Projects/C-Projects/ACompiler/build/libutils.a
 
 CMakeFiles/ACompiler.dir/src/main.c.o
  /home/masterdonut/Projects/C-Projects/ACompiler/src/main.c
+ /home/masterdonut/Projects/C-Projects/ACompiler/include/parser/parser.h
  /home/masterdonut/Projects/C-Projects/ACompiler/include/tokenizer/tokenizer.h
  /home/masterdonut/Projects/C-Projects/ACompiler/include/tokenizer/tokens.h
  /home/masterdonut/Projects/C-Projects/ACompiler/include/utils/arraylist.h

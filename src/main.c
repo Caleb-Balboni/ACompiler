@@ -5,7 +5,7 @@
 #include "tokenizer/tokens.h"
 #include "utils/arraylist.h"
 #include "utils/hashtable.h"
-
+#include "parser/parser.h"
 
 unsigned long getFileCharCount(FILE* file) {
   char c;
@@ -34,6 +34,7 @@ int main(int argc, char *argv[]) {
 		Token* temp = (Token*)get_list(array, i);
 		printf("[%d] TOKEN: type=%d, lexeme='%s'\n", i, temp->type, temp->lexeme);
 	}
+  Node* head = parse_program(array);
   destroy_list(array);
   fclose(source_file);
 	return 0;

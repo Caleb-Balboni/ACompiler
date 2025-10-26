@@ -13,6 +13,7 @@ typedef enum {
   T_IF,
   T_ELSE,
   T_LET,
+  T_CALL,
   T_FUNC,
   T_BYTE,
   T_WORD,
