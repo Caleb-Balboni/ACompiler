@@ -139,6 +139,7 @@ CMakeFiles/utils.dir/src/utils/stack.c.o
  /home/masterdonut/Projects/C-Projects/ACompiler/src/utils/stack.c
  /home/masterdonut/Projects/C-Projects/ACompiler/include/utils/stack.h
  /usr/include/alloca.h
+ /usr/include/assert.h
  /usr/include/endian.h
  /usr/include/features-time64.h
  /usr/include/features.h

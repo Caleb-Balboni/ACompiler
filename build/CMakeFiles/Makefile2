@@ -64,6 +64,8 @@ CMAKE_BINARY_DIR = /home/masterdonut/Projects/C-Projects/ACompiler/build
 
 # The main recursive "all" target.
 all: CMakeFiles/tokenizer.dir/all
+all: CMakeFiles/parser.dir/all
+all: CMakeFiles/errors.dir/all
 all: CMakeFiles/utils.dir/all
 all: CMakeFiles/ACompiler.dir/all
 all: CMakeFiles/test_all.dir/all
@@ -71,6 +73,8 @@ all: CMakeFiles/test_all.dir/all
 
 # The main recursive "codegen" target.
 codegen: CMakeFiles/tokenizer.dir/codegen
+codegen: CMakeFiles/parser.dir/codegen
+codegen: CMakeFiles/errors.dir/codegen
 codegen: CMakeFiles/utils.dir/codegen
 codegen: CMakeFiles/ACompiler.dir/codegen
 codegen: CMakeFiles/test_all.dir/codegen
@@ -110,6 +114,8 @@ clean: CMakeFiles/ContinuousCoverage.dir/clean
 clean: CMakeFiles/ContinuousMemCheck.dir/clean
 clean: CMakeFiles/ContinuousSubmit.dir/clean
 clean: CMakeFiles/tokenizer.dir/clean
+clean: CMakeFiles/parser.dir/clean
+clean: CMakeFiles/errors.dir/clean
 clean: CMakeFiles/utils.dir/clean
 clean: CMakeFiles/ACompiler.dir/clean
 clean: CMakeFiles/test_all.dir/clean
@@ -1018,7 +1024,7 @@ CMakeFiles/ContinuousSubmit.dir/clean:
 CMakeFiles/tokenizer.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tokenizer.dir/build.make CMakeFiles/tokenizer.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tokenizer.dir/build.make CMakeFiles/tokenizer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=5,6 "Built target tokenizer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=9,10 "Built target tokenizer"
 .PHONY : CMakeFiles/tokenizer.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1035,7 +1041,7 @@ tokenizer: CMakeFiles/tokenizer.dir/rule
 # codegen rule for target.
 CMakeFiles/tokenizer.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tokenizer.dir/build.make CMakeFiles/tokenizer.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=5,6 "Finished codegen for target tokenizer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=9,10 "Finished codegen for target tokenizer"
 .PHONY : CMakeFiles/tokenizer.dir/codegen
 
 # clean rule for target.
@@ -1044,13 +1050,77 @@ CMakeFiles/tokenizer.dir/clean:
 .PHONY : CMakeFiles/tokenizer.dir/clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/parser.dir
+
+# All Build rule for target.
+CMakeFiles/parser.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parser.dir/build.make CMakeFiles/parser.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parser.dir/build.make CMakeFiles/parser.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=5,6 "Built target parser"
+.PHONY : CMakeFiles/parser.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/parser.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/parser.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles 0
+.PHONY : CMakeFiles/parser.dir/rule
+
+# Convenience name for target.
+parser: CMakeFiles/parser.dir/rule
+.PHONY : parser
+
+# codegen rule for target.
+CMakeFiles/parser.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parser.dir/build.make CMakeFiles/parser.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=5,6 "Finished codegen for target parser"
+.PHONY : CMakeFiles/parser.dir/codegen
+
+# clean rule for target.
+CMakeFiles/parser.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/parser.dir/build.make CMakeFiles/parser.dir/clean
+.PHONY : CMakeFiles/parser.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/errors.dir
+
+# All Build rule for target.
+CMakeFiles/errors.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/errors.dir/build.make CMakeFiles/errors.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/errors.dir/build.make CMakeFiles/errors.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=3,4 "Built target errors"
+.PHONY : CMakeFiles/errors.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/errors.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/errors.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles 0
+.PHONY : CMakeFiles/errors.dir/rule
+
+# Convenience name for target.
+errors: CMakeFiles/errors.dir/rule
+.PHONY : errors
+
+# codegen rule for target.
+CMakeFiles/errors.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/errors.dir/build.make CMakeFiles/errors.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=3,4 "Finished codegen for target errors"
+.PHONY : CMakeFiles/errors.dir/codegen
+
+# clean rule for target.
+CMakeFiles/errors.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/errors.dir/build.make CMakeFiles/errors.dir/clean
+.PHONY : CMakeFiles/errors.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/utils.dir
 
 # All Build rule for target.
 CMakeFiles/utils.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=7,8,9,10 "Built target utils"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=11,12,13,14 "Built target utils"
 .PHONY : CMakeFiles/utils.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1067,7 +1137,7 @@ utils: CMakeFiles/utils.dir/rule
 # codegen rule for target.
 CMakeFiles/utils.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=7,8,9,10 "Finished codegen for target utils"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=11,12,13,14 "Finished codegen for target utils"
 .PHONY : CMakeFiles/utils.dir/codegen
 
 # clean rule for target.
@@ -1080,6 +1150,8 @@ CMakeFiles/utils.dir/clean:
 
 # All Build rule for target.
 CMakeFiles/ACompiler.dir/all: CMakeFiles/tokenizer.dir/all
+CMakeFiles/ACompiler.dir/all: CMakeFiles/parser.dir/all
+CMakeFiles/ACompiler.dir/all: CMakeFiles/errors.dir/all
 CMakeFiles/ACompiler.dir/all: CMakeFiles/utils.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ACompiler.dir/build.make CMakeFiles/ACompiler.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ACompiler.dir/build.make CMakeFiles/ACompiler.dir/build
@@ -1088,7 +1160,7 @@ CMakeFiles/ACompiler.dir/all: CMakeFiles/utils.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/ACompiler.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/ACompiler.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles 0
 .PHONY : CMakeFiles/ACompiler.dir/rule
@@ -1116,7 +1188,7 @@ CMakeFiles/test_all.dir/all: CMakeFiles/tokenizer.dir/all
 CMakeFiles/test_all.dir/all: CMakeFiles/utils.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_all.dir/build.make CMakeFiles/test_all.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_all.dir/build.make CMakeFiles/test_all.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=3,4 "Built target test_all"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=7,8 "Built target test_all"
 .PHONY : CMakeFiles/test_all.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1133,7 +1205,7 @@ test_all: CMakeFiles/test_all.dir/rule
 # codegen rule for target.
 CMakeFiles/test_all.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_all.dir/build.make CMakeFiles/test_all.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=3,4 "Finished codegen for target test_all"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=7,8 "Finished codegen for target test_all"
 .PHONY : CMakeFiles/test_all.dir/codegen
 
 # clean rule for target.

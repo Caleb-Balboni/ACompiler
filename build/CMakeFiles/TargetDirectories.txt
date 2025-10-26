@@ -27,6 +27,8 @@
 /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles/ContinuousMemCheck.dir
 /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles/ContinuousSubmit.dir
 /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles/tokenizer.dir
+/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles/parser.dir
+/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles/errors.dir
 /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles/utils.dir
 /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles/ACompiler.dir
 /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles/test_all.dir

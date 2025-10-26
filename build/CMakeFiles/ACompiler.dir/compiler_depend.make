@@ -14,10 +14,13 @@ ACompiler: /lib/x86_64-linux-gnu/libc.so.6 \
   /usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so \
   /usr/lib/x86_64-linux-gnu/libc_nonshared.a \
   CMakeFiles/ACompiler.dir/src/main.c.o \
+  liberrors.a \
+  libparser.a \
   libtokenizer.a \
   libutils.a
 
 CMakeFiles/ACompiler.dir/src/main.c.o: /home/masterdonut/Projects/C-Projects/ACompiler/src/main.c \
+  /home/masterdonut/Projects/C-Projects/ACompiler/include/parser/parser.h \
   /home/masterdonut/Projects/C-Projects/ACompiler/include/tokenizer/tokenizer.h \
   /home/masterdonut/Projects/C-Projects/ACompiler/include/tokenizer/tokens.h \
   /home/masterdonut/Projects/C-Projects/ACompiler/include/utils/arraylist.h \
@@ -130,17 +133,15 @@ CMakeFiles/ACompiler.dir/src/main.c.o: /home/masterdonut/Projects/C-Projects/ACo
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
-
-/usr/include/stdio.h:
-
-/usr/lib/x86_64-linux-gnu/crti.o:
-
-/usr/include/features.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
-CMakeFiles/ACompiler.dir/src/main.c.o:
+/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/features.h:
 
 /usr/include/alloca.h:
 
@@ -156,7 +157,7 @@ CMakeFiles/ACompiler.dir/src/main.c.o:
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
-/usr/include/stdlib.h:
+/home/masterdonut/Projects/C-Projects/ACompiler/include/parser/parser.h:
 
 libutils.a:
 
@@ -168,7 +169,17 @@ libutils.a:
 
 libtokenizer.a:
 
+/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h:
+
 /usr/include/x86_64-linux-gnu/bits/select.h:
+
+CMakeFiles/ACompiler.dir/src/main.c.o:
+
+/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
 
 /usr/lib/x86_64-linux-gnu/Scrt1.o:
 
@@ -181,6 +192,8 @@ libtokenizer.a:
 /home/masterdonut/Projects/C-Projects/ACompiler/include/utils/hashtable.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
+
+/usr/lib/x86_64-linux-gnu/crti.o:
 
 /usr/lib/x86_64-linux-gnu/libc_nonshared.a:
 
@@ -198,21 +211,23 @@ libtokenizer.a:
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
 
+libparser.a:
+
 /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
 
 /lib/x86_64-linux-gnu/libc.so.6:
-
-/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
-
-/usr/include/linux/limits.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a:
 
 /home/masterdonut/Projects/C-Projects/ACompiler/include/tokenizer/tokens.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o:
+
+/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+
+/usr/include/stdio.h:
+
+/usr/include/stdlib.h:
 
 /usr/include/strings.h:
 
@@ -258,12 +273,6 @@ libtokenizer.a:
 
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
 
+liberrors.a:
+
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
-
-/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:

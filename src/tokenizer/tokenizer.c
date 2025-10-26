@@ -11,12 +11,14 @@ static hashtable_t* token_hash = NULL;
 
 Token_type* createTokenType(Token_type type) {
   Token_type* t = malloc(sizeof(Token_type));
+  *t = type;
   return t;
 }
 
 void initTokenMap(void) {
 	
 	token_hash = create_ht(100);
+	add_ht(token_hash, "call", createTokenType(T_CALL)); 
 	add_ht(token_hash, "let", createTokenType(T_LET)); 
   add_ht(token_hash, "BYTE", createTokenType(T_BYTE));
   add_ht(token_hash, "WORD", createTokenType(T_WORD));
@@ -86,7 +88,7 @@ Token* createString(Tokenizer* tokenizer) {
 
 Token* createNumber(Tokenizer* tokenizer) {
   char p = peek(tokenizer);
-  while (isdigit(p)) {
+  while (isdigit(p) || p == '_') {
     advance(tokenizer);
     p = peek(tokenizer);
   }
@@ -110,8 +112,7 @@ bool match(Tokenizer* tokenizer, char c) {
 	if (tokenizer->cur != c) {
     return false;
 	}
-	
-	tokenizer->cur_idx += 1;
+  advance(tokenizer);	
 	return true;	
 }
 
@@ -223,7 +224,6 @@ ArrayList* tokenize(FILE* sourcefile, unsigned long char_count) {
 
 	assert(sourcefile != NULL && "no inputted source file");
 	initTokenMap();
-	
 	Tokenizer* tokenizer = malloc(sizeof(Tokenizer));
 	tokenizer->sourcefile = sourcefile;
   tokenizer->filesize = char_count;
