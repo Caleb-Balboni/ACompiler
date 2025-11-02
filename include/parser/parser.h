@@ -40,6 +40,7 @@ typedef enum {
   B_LESS, // <
   B_GREATER, // >
   B_EQUAL_EQUAL, // ==
+  B_NOT_EQUAL, // !=
   B_GEQ, // >=
   B_LEQ, // <= 
 } binary_expr_t;
@@ -111,7 +112,7 @@ typedef struct {
 } identifier_expr;
 
 typedef struct {
-  long num_value;
+  long long int num_value;
   const char* str_value; 
 } literal_expr;
 
@@ -138,6 +139,7 @@ typedef struct {
 
 typedef struct {
   Node* var_t;
+  Node* inner;
 } cast_expr;
 
 typedef struct {
@@ -221,8 +223,9 @@ Node* mk_return_stmt(Node* return_val);
 
 // makes a new cast expressions
 // @param type - the type of the cast
+// @param inner - the nodes being casted
 // @return - the newly created cast expression
-Node* mk_cast_expr(Node* type);
+Node* mk_cast_expr(Node* type, Node* inner);
 
 // makes a new call expression
 // @param callee - the function being called
@@ -253,7 +256,7 @@ Node* mk_unary_expr(unary_expr_t op, Node* expr);
 // @param num_value - the number value of the literal expression
 // @param str_value - the string value of the literal expression
 // @return - the newly created literal expression
-Node* mk_literal_expr(long num_value, const char* str_value);
+Node* mk_literal_expr(const char* num_value, const char* str_value);
 
 // creates a new identifer expressions
 // @param type - the type of the function
@@ -300,6 +303,11 @@ Node* parse_identifier(Parser* parser);
 // @return - the parsed node
 Node* parse_statment(Parser* parser);
 
+// parses an equality statment
+// @param parser - the parser to parse from
+// @return - the parsed node
+Node* parse_equal(Parser* parser);
+
 // find and parses all statments
 // @param parser - the parser to parse from
 // @return - the parsed node
@@ -310,10 +318,30 @@ Node* parse_expr(Parser* parser);
 // @return - the parsed node
 Node* parse_literal_expr(Parser* parser);
 
+// parses primary expression (literals, identifers)
+// @param parser - the parser to parse from
+// @return - the parsed node
+Node* parse_primary(Parser* parser);
+
 // parses a unary expression 
 // @param parser - the parser to parse from
 // @return - the parsed node
 Node* parse_unary_expr(Parser* parser);
+
+// parses a factor (* or /) of a binary expression
+// @param parser - the parser to parse from
+// @return - the parsed node
+Node* parse_factor(Parser* parser);
+
+// parses a term (+ or -), of a binary expression
+// @param parser - the parser to parse from
+// @return - the parsed node
+Node* parse_term(Parser* parser);
+
+// parses a comparison expression (>, <)
+// @param parser - the parser to parse from
+// @return - the parsed node
+Node* parse_compare(Parser* parser);
 
 // parses a binary expression
 // @param parser - the parser to parse from
@@ -334,6 +362,11 @@ Node* parse_assign_expr(Parser* parser);
 // @param parser - the parser to parse from
 // @return - the newly created node
 Node* parse_return_stmt(Parser* parser);
+
+// parses a list of params for a function call
+// @param parser - the parser to parse from
+// @return - the array of arguments to the function call
+ArrayList* parse_args(Parser* parser);
 
 // parses a call expression
 // @param parser - the parser to parse from
@@ -399,10 +432,19 @@ bool is_var_type(Token* token);
 // @return - the incoming token
 Token* p_peek(Parser* parser);
 
+// peeks at the next incoming token
+// @param parser - the parser the parse from
+// @return - the next peeked node
+Token* p_peek_next(Parser* parser);
+
 // checks if a given token matches a given type
 // @param token - the token to match token
 // @param type - the type of token to match to
 // @return - true if the token matches the type, false otherwise
 bool p_match(Token* token, Token_type type);
+
+// prints out the AST
+// @param nodes - the head node of the ast
+void print_ast(Node* head);
 
 #endif

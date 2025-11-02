@@ -82,7 +82,6 @@ Token* createString(Tokenizer* tokenizer) {
   tokenizer->start_idx += 1;
   Token* temp = createToken(T_STRING_LIT, tokenizer);
   advance(tokenizer);
-  advance(tokenizer);
   return temp;
 }
 
@@ -171,7 +170,7 @@ Token* scanToken(Tokenizer* tokenizer) {
       return createToken(T_STAR, tokenizer);
       break;
     case '/':
-      return createToken(T_DIVIDE, tokenizer);
+      return createToken(match(tokenizer, '/') ? T_DIVDIV : T_DIVIDE, tokenizer);
       break;
     case ':':
       return createToken(T_COLON, tokenizer);

@@ -37,6 +37,7 @@ typedef enum {
   T_PLUS,
   T_STAR,
   T_DIVIDE,
+  T_DIVDIV,
   T_GREATER,
   T_LESS,
   T_NOT,
