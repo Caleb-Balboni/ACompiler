@@ -139,6 +139,13 @@ char advance(Tokenizer* tokenizer) {
 	return temp;
 }
 
+static Token* createEndl(int line, int column) {
+  Token* tok = malloc(sizeof(Token));
+  tok->type = T_ENDL;
+  tok->line = line;
+  tok->col = column;
+}
+
 Token* scanToken(Tokenizer* tokenizer) {
 	char c = advance(tokenizer);
 	switch(c) {
@@ -200,6 +207,7 @@ Token* scanToken(Tokenizer* tokenizer) {
 			break;
 		case '\n':
 			tokenizer->cur_line+= 1;
+      return createEndl(tokenizer->cur_line, tokenizer->cur_idx);
 			break;
     default:
       if (isalpha(c)) {
@@ -229,7 +237,7 @@ ArrayList* tokenize(FILE* sourcefile, unsigned long char_count) {
   tokenizer->cur = fgetc(sourcefile);
 	tokenizer->start_idx = 0;
 	tokenizer->cur_idx = 0;
-	tokenizer->cur_line = 0;	
+	tokenizer->cur_line = 1;	
 	ArrayList* tokens = init_list(100);
 	assert(tokens != NULL && "Token list was null");
 

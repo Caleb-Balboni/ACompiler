@@ -50,6 +50,14 @@ Node* mk_return_stmt(Node* return_val) {
   return n;
 }
 
+Node* mk_comment_stmt(char* comment) {
+  Node* n = malloc(sizeof(Node));
+  n->type = AST_COMMENT;
+  comment_stmt cs = { .comment = comment };
+  n->commentStmt = cs;
+  return n;
+}
+
 Node* mk_cast_expr(Node* type, Node* inner) {
   Node* n = malloc(sizeof(Node));
   n->type = AST_CAST;
@@ -496,10 +504,36 @@ Node* parse_expr(Parser* parser) {
   return parse_assign_expr(parser);
 }
 
+Node* parse_comment_stmt(Parser* parser) {
+  Token* temp = p_peek(parser);
+  assert(temp->type == T_DIVDIV);
+  p_advance(parser);
+  char* comment = NULL;
+  unsigned long len = 0;
+  temp = p_peek(parser);
+  unsigned char count = 0;
+  while (!p_match(temp, T_ENDL)) {
+    len += strlen(temp->lexeme);
+    comment = realloc(comment, len + 1); 
+    if (count == 0) {
+      strcpy(comment, temp->lexeme);
+    } else {
+      strcat(comment, temp->lexeme);
+    }
+    p_advance(parser);
+    temp = p_peek(parser);
+    count++;
+  }
+  return mk_comment_stmt(comment);
+}
+
 Node* parse_statment(Parser* parser) {
   Token* temp = p_peek(parser);
   if (p_match(temp, T_IF)) {
     return parse_if_stmt(parser);
+  }
+  if (p_match(temp, T_DIVDIV)) {
+    return parse_comment_stmt(parser);
   }
   if (p_match(temp, T_RETURN)) {
     Node* ret_stmt = parse_return_stmt(parser);
@@ -670,6 +704,9 @@ Node* parse_program(ArrayList* nodes) {
       temp = parse_func_decl(parser);
     } else if (p_match(p_peek(parser), T_LET)) {
       temp = parse_var_decl(parser);
+
+    } else if (p_match(p_peek(parser), T_DIVDIV)) {
+      temp = parse_comment_stmt(parser);
     } else {
       compile_error(p_peek(parser), "only varibles and function can be declared in global scope");
     }
@@ -733,6 +770,7 @@ static void print_assign_expr(Node* node, const int depth);
 static void print_call_expr(Node* node, const int depth);
 static void print_binary_expr(Node* node, const int depth);
 static void print_primary_types(Node* node, const int depth);
+static void print_comment_stmt(Node* node, const int depth);
 
 static void print_with_indent_arr(const char** to_print, size_t bytes, const int depth) {
   size_t elements = bytes / sizeof(char*);
@@ -988,6 +1026,8 @@ static void print_stmt(Node* node, const int depth) {
     case AST_RETURN:
       print_return_stmt(node, 1 + depth);
       break;
+    case AST_COMMENT:
+      print_comment_stmt(node, 1 + depth);
     default:
       print_expr(node, 1 + depth); 
   }
@@ -1007,6 +1047,13 @@ static void print_block_stmt(Node* node, const int depth) {
         print_stmt(temp, depth);
     }
   }
+}
+
+static void print_comment_stmt(Node* node, const int depth) {
+  assert(node->type == AST_COMMENT);
+  comment_stmt commentstmt = node->commentStmt;
+  const char* comment[2] = { "COMMENT:", commentstmt.comment };
+  print_with_indent_arr(comment, sizeof(comment), depth);
 }
 
 static void print_func_type(Node* node, const int depth) {
@@ -1038,6 +1085,8 @@ void print_ast(Node* head) {
       case AST_FUNC_DECL:
         print_func_decl(node, 0);
         break;
+      case AST_COMMENT:
+        
     }
   }
 }

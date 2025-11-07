@@ -55,6 +55,7 @@ typedef enum {
   AST_BLOCK,
   AST_IF,
   AST_RETURN,
+  AST_COMMENT,
   // expressions
   AST_IDENTIFIER,
   AST_LITERAL,
@@ -104,6 +105,10 @@ typedef struct {
   Node* then_branch;
   Node* else_branch;
 } if_stmt;
+
+typedef struct {
+  char* comment; 
+} comment_stmt;
 
 // EXPRESSION STRUCTS
 
@@ -185,6 +190,7 @@ struct Node {
     call_expr callExpr;
     cast_expr castExpr;
     return_stmt returnStmt;
+    comment_stmt commentStmt;
     // types
     func_param funcParam;
     var_t variable_t;
@@ -220,6 +226,8 @@ Node* mk_var_type(bool is_adr, lit_adr_t type_adr, lit_t type);
 // @param return_val - the expression that dictates the return expression value
 // @return - the newly created return expression
 Node* mk_return_stmt(Node* return_val); 
+
+Node* mk_comment_stmt(char* comment);
 
 // makes a new cast expressions
 // @param type - the type of the cast
@@ -362,6 +370,11 @@ Node* parse_assign_expr(Parser* parser);
 // @param parser - the parser to parse from
 // @return - the newly created node
 Node* parse_return_stmt(Parser* parser);
+
+// parses a comment stmt
+// @param parser - the parser to parse from
+// @return - returns a comment node
+Node* parse_comment_stmt(Parser* parser);
 
 // parses a list of params for a function call
 // @param parser - the parser to parse from

@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/masterdonut/Projects/C-Projects/ACompiler/src/main.c" "CMakeFiles/ACompiler.dir/src/main.c.o" "gcc" "CMakeFiles/ACompiler.dir/src/main.c.o.d"
+  "/home/calebb/Projects/CProjects/ACompiler/src/main.c" "CMakeFiles/ACompiler.dir/src/main.c.o" "gcc" "CMakeFiles/ACompiler.dir/src/main.c.o.d"
   "" "ACompiler" "gcc" "CMakeFiles/ACompiler.dir/link.d"
   )
 
