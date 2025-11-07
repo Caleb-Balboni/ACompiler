@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/masterdonut/Projects/C-Projects/ACompiler
+CMAKE_SOURCE_DIR = /home/calebb/Projects/CProjects/ACompiler
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/masterdonut/Projects/C-Projects/ACompiler/build
+CMAKE_BINARY_DIR = /home/calebb/Projects/CProjects/ACompiler/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/utils.dir/depend.make
@@ -73,46 +73,46 @@ CMakeFiles/utils.dir/codegen:
 .PHONY : CMakeFiles/utils.dir/codegen
 
 CMakeFiles/utils.dir/src/utils/hashtable.c.o: CMakeFiles/utils.dir/flags.make
-CMakeFiles/utils.dir/src/utils/hashtable.c.o: /home/masterdonut/Projects/C-Projects/ACompiler/src/utils/hashtable.c
+CMakeFiles/utils.dir/src/utils/hashtable.c.o: /home/calebb/Projects/CProjects/ACompiler/src/utils/hashtable.c
 CMakeFiles/utils.dir/src/utils/hashtable.c.o: CMakeFiles/utils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/utils.dir/src/utils/hashtable.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/utils.dir/src/utils/hashtable.c.o -MF CMakeFiles/utils.dir/src/utils/hashtable.c.o.d -o CMakeFiles/utils.dir/src/utils/hashtable.c.o -c /home/masterdonut/Projects/C-Projects/ACompiler/src/utils/hashtable.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/calebb/Projects/CProjects/ACompiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/utils.dir/src/utils/hashtable.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/utils.dir/src/utils/hashtable.c.o -MF CMakeFiles/utils.dir/src/utils/hashtable.c.o.d -o CMakeFiles/utils.dir/src/utils/hashtable.c.o -c /home/calebb/Projects/CProjects/ACompiler/src/utils/hashtable.c
 
 CMakeFiles/utils.dir/src/utils/hashtable.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/utils.dir/src/utils/hashtable.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/masterdonut/Projects/C-Projects/ACompiler/src/utils/hashtable.c > CMakeFiles/utils.dir/src/utils/hashtable.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/calebb/Projects/CProjects/ACompiler/src/utils/hashtable.c > CMakeFiles/utils.dir/src/utils/hashtable.c.i
 
 CMakeFiles/utils.dir/src/utils/hashtable.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/utils.dir/src/utils/hashtable.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/masterdonut/Projects/C-Projects/ACompiler/src/utils/hashtable.c -o CMakeFiles/utils.dir/src/utils/hashtable.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/calebb/Projects/CProjects/ACompiler/src/utils/hashtable.c -o CMakeFiles/utils.dir/src/utils/hashtable.c.s
 
 CMakeFiles/utils.dir/src/utils/arraylist.c.o: CMakeFiles/utils.dir/flags.make
-CMakeFiles/utils.dir/src/utils/arraylist.c.o: /home/masterdonut/Projects/C-Projects/ACompiler/src/utils/arraylist.c
+CMakeFiles/utils.dir/src/utils/arraylist.c.o: /home/calebb/Projects/CProjects/ACompiler/src/utils/arraylist.c
 CMakeFiles/utils.dir/src/utils/arraylist.c.o: CMakeFiles/utils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/utils.dir/src/utils/arraylist.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/utils.dir/src/utils/arraylist.c.o -MF CMakeFiles/utils.dir/src/utils/arraylist.c.o.d -o CMakeFiles/utils.dir/src/utils/arraylist.c.o -c /home/masterdonut/Projects/C-Projects/ACompiler/src/utils/arraylist.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/calebb/Projects/CProjects/ACompiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/utils.dir/src/utils/arraylist.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/utils.dir/src/utils/arraylist.c.o -MF CMakeFiles/utils.dir/src/utils/arraylist.c.o.d -o CMakeFiles/utils.dir/src/utils/arraylist.c.o -c /home/calebb/Projects/CProjects/ACompiler/src/utils/arraylist.c
 
 CMakeFiles/utils.dir/src/utils/arraylist.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/utils.dir/src/utils/arraylist.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/masterdonut/Projects/C-Projects/ACompiler/src/utils/arraylist.c > CMakeFiles/utils.dir/src/utils/arraylist.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/calebb/Projects/CProjects/ACompiler/src/utils/arraylist.c > CMakeFiles/utils.dir/src/utils/arraylist.c.i
 
 CMakeFiles/utils.dir/src/utils/arraylist.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/utils.dir/src/utils/arraylist.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/masterdonut/Projects/C-Projects/ACompiler/src/utils/arraylist.c -o CMakeFiles/utils.dir/src/utils/arraylist.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/calebb/Projects/CProjects/ACompiler/src/utils/arraylist.c -o CMakeFiles/utils.dir/src/utils/arraylist.c.s
 
 CMakeFiles/utils.dir/src/utils/stack.c.o: CMakeFiles/utils.dir/flags.make
-CMakeFiles/utils.dir/src/utils/stack.c.o: /home/masterdonut/Projects/C-Projects/ACompiler/src/utils/stack.c
+CMakeFiles/utils.dir/src/utils/stack.c.o: /home/calebb/Projects/CProjects/ACompiler/src/utils/stack.c
 CMakeFiles/utils.dir/src/utils/stack.c.o: CMakeFiles/utils.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/utils.dir/src/utils/stack.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/utils.dir/src/utils/stack.c.o -MF CMakeFiles/utils.dir/src/utils/stack.c.o.d -o CMakeFiles/utils.dir/src/utils/stack.c.o -c /home/masterdonut/Projects/C-Projects/ACompiler/src/utils/stack.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/calebb/Projects/CProjects/ACompiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/utils.dir/src/utils/stack.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/utils.dir/src/utils/stack.c.o -MF CMakeFiles/utils.dir/src/utils/stack.c.o.d -o CMakeFiles/utils.dir/src/utils/stack.c.o -c /home/calebb/Projects/CProjects/ACompiler/src/utils/stack.c
 
 CMakeFiles/utils.dir/src/utils/stack.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/utils.dir/src/utils/stack.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/masterdonut/Projects/C-Projects/ACompiler/src/utils/stack.c > CMakeFiles/utils.dir/src/utils/stack.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/calebb/Projects/CProjects/ACompiler/src/utils/stack.c > CMakeFiles/utils.dir/src/utils/stack.c.i
 
 CMakeFiles/utils.dir/src/utils/stack.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/utils.dir/src/utils/stack.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/masterdonut/Projects/C-Projects/ACompiler/src/utils/stack.c -o CMakeFiles/utils.dir/src/utils/stack.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/calebb/Projects/CProjects/ACompiler/src/utils/stack.c -o CMakeFiles/utils.dir/src/utils/stack.c.s
 
 # Object files for target utils
 utils_OBJECTS = \
@@ -128,7 +128,7 @@ libutils.a: CMakeFiles/utils.dir/src/utils/arraylist.c.o
 libutils.a: CMakeFiles/utils.dir/src/utils/stack.c.o
 libutils.a: CMakeFiles/utils.dir/build.make
 libutils.a: CMakeFiles/utils.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C static library libutils.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/calebb/Projects/CProjects/ACompiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C static library libutils.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/utils.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/utils.dir/link.txt --verbose=$(VERBOSE)
 
@@ -141,6 +141,6 @@ CMakeFiles/utils.dir/clean:
 .PHONY : CMakeFiles/utils.dir/clean
 
 CMakeFiles/utils.dir/depend:
-	cd /home/masterdonut/Projects/C-Projects/ACompiler/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/masterdonut/Projects/C-Projects/ACompiler /home/masterdonut/Projects/C-Projects/ACompiler /home/masterdonut/Projects/C-Projects/ACompiler/build /home/masterdonut/Projects/C-Projects/ACompiler/build /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles/utils.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/calebb/Projects/CProjects/ACompiler/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/calebb/Projects/CProjects/ACompiler /home/calebb/Projects/CProjects/ACompiler /home/calebb/Projects/CProjects/ACompiler/build /home/calebb/Projects/CProjects/ACompiler/build /home/calebb/Projects/CProjects/ACompiler/build/CMakeFiles/utils.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/utils.dir/depend
 

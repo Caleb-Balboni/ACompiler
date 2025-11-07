@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/masterdonut/Projects/C-Projects/ACompiler
+CMAKE_SOURCE_DIR = /home/calebb/Projects/CProjects/ACompiler
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/masterdonut/Projects/C-Projects/ACompiler/build
+CMAKE_BINARY_DIR = /home/calebb/Projects/CProjects/ACompiler/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/tokenizer.dir/depend.make
@@ -73,18 +73,18 @@ CMakeFiles/tokenizer.dir/codegen:
 .PHONY : CMakeFiles/tokenizer.dir/codegen
 
 CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.o: CMakeFiles/tokenizer.dir/flags.make
-CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.o: /home/masterdonut/Projects/C-Projects/ACompiler/src/tokenizer/tokenizer.c
+CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.o: /home/calebb/Projects/CProjects/ACompiler/src/tokenizer/tokenizer.c
 CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.o: CMakeFiles/tokenizer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.o -MF CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.o.d -o CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.o -c /home/masterdonut/Projects/C-Projects/ACompiler/src/tokenizer/tokenizer.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/calebb/Projects/CProjects/ACompiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.o -MF CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.o.d -o CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.o -c /home/calebb/Projects/CProjects/ACompiler/src/tokenizer/tokenizer.c
 
 CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/masterdonut/Projects/C-Projects/ACompiler/src/tokenizer/tokenizer.c > CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/calebb/Projects/CProjects/ACompiler/src/tokenizer/tokenizer.c > CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.i
 
 CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/masterdonut/Projects/C-Projects/ACompiler/src/tokenizer/tokenizer.c -o CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/calebb/Projects/CProjects/ACompiler/src/tokenizer/tokenizer.c -o CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.s
 
 # Object files for target tokenizer
 tokenizer_OBJECTS = \
@@ -96,7 +96,7 @@ tokenizer_EXTERNAL_OBJECTS =
 libtokenizer.a: CMakeFiles/tokenizer.dir/src/tokenizer/tokenizer.c.o
 libtokenizer.a: CMakeFiles/tokenizer.dir/build.make
 libtokenizer.a: CMakeFiles/tokenizer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library libtokenizer.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/calebb/Projects/CProjects/ACompiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library libtokenizer.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/tokenizer.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tokenizer.dir/link.txt --verbose=$(VERBOSE)
 
@@ -109,6 +109,6 @@ CMakeFiles/tokenizer.dir/clean:
 .PHONY : CMakeFiles/tokenizer.dir/clean
 
 CMakeFiles/tokenizer.dir/depend:
-	cd /home/masterdonut/Projects/C-Projects/ACompiler/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/masterdonut/Projects/C-Projects/ACompiler /home/masterdonut/Projects/C-Projects/ACompiler /home/masterdonut/Projects/C-Projects/ACompiler/build /home/masterdonut/Projects/C-Projects/ACompiler/build /home/masterdonut/Projects/C-Projects/ACompiler/build/CMakeFiles/tokenizer.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/calebb/Projects/CProjects/ACompiler/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/calebb/Projects/CProjects/ACompiler /home/calebb/Projects/CProjects/ACompiler /home/calebb/Projects/CProjects/ACompiler/build /home/calebb/Projects/CProjects/ACompiler/build /home/calebb/Projects/CProjects/ACompiler/build/CMakeFiles/tokenizer.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/tokenizer.dir/depend
 

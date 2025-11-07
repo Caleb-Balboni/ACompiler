@@ -8,10 +8,10 @@ ACompiler: /lib/x86_64-linux-gnu/libc.so.6 \
   /usr/lib/x86_64-linux-gnu/crtn.o \
   /usr/lib/x86_64-linux-gnu/libc.so \
   /usr/lib/x86_64-linux-gnu/libgcc_s.so.1 \
-  /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o \
-  /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o \
-  /usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a \
-  /usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so \
+  /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o \
+  /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a \
+  /usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so \
   /usr/lib/x86_64-linux-gnu/libc_nonshared.a \
   CMakeFiles/ACompiler.dir/src/main.c.o \
   liberrors.a \
@@ -19,12 +19,12 @@ ACompiler: /lib/x86_64-linux-gnu/libc.so.6 \
   libtokenizer.a \
   libutils.a
 
-CMakeFiles/ACompiler.dir/src/main.c.o: /home/masterdonut/Projects/C-Projects/ACompiler/src/main.c \
-  /home/masterdonut/Projects/C-Projects/ACompiler/include/parser/parser.h \
-  /home/masterdonut/Projects/C-Projects/ACompiler/include/tokenizer/tokenizer.h \
-  /home/masterdonut/Projects/C-Projects/ACompiler/include/tokenizer/tokens.h \
-  /home/masterdonut/Projects/C-Projects/ACompiler/include/utils/arraylist.h \
-  /home/masterdonut/Projects/C-Projects/ACompiler/include/utils/hashtable.h \
+CMakeFiles/ACompiler.dir/src/main.c.o: /home/calebb/Projects/CProjects/ACompiler/src/main.c \
+  /home/calebb/Projects/CProjects/ACompiler/include/parser/parser.h \
+  /home/calebb/Projects/CProjects/ACompiler/include/tokenizer/tokenizer.h \
+  /home/calebb/Projects/CProjects/ACompiler/include/tokenizer/tokens.h \
+  /home/calebb/Projects/CProjects/ACompiler/include/utils/arraylist.h \
+  /home/calebb/Projects/CProjects/ACompiler/include/utils/hashtable.h \
   /usr/include/alloca.h \
   /usr/include/endian.h \
   /usr/include/features-time64.h \
@@ -88,20 +88,14 @@ CMakeFiles/ACompiler.dir/src/main.c.o: /home/masterdonut/Projects/C-Projects/ACo
   /usr/include/x86_64-linux-gnu/sys/cdefs.h \
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/sys/types.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/include/limits.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/include/stdarg.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/include/stdbool.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/include/stddef.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/include/syslimits.h
+  /usr/lib/gcc/x86_64-linux-gnu/15/include/limits.h \
+  /usr/lib/gcc/x86_64-linux-gnu/15/include/stdarg.h \
+  /usr/lib/gcc/x86_64-linux-gnu/15/include/stdbool.h \
+  /usr/lib/gcc/x86_64-linux-gnu/15/include/stddef.h \
+  /usr/lib/gcc/x86_64-linux-gnu/15/include/syslimits.h
 
 
-/usr/lib/gcc/x86_64-linux-gnu/14/include/syslimits.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/14/include/stddef.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/14/include/stdbool.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/14/include/limits.h:
+/usr/lib/gcc/x86_64-linux-gnu/15/include/stddef.h:
 
 /usr/include/x86_64-linux-gnu/sys/types.h:
 
@@ -111,23 +105,17 @@ CMakeFiles/ACompiler.dir/src/main.c.o: /home/masterdonut/Projects/C-Projects/ACo
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
-/usr/include/x86_64-linux-gnu/bits/wordsize.h:
-
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/14/include/stdarg.h:
 
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
 
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
-/usr/include/x86_64-linux-gnu/sys/cdefs.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/include/syslimits.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
 
@@ -151,21 +139,7 @@ CMakeFiles/ACompiler.dir/src/main.c.o: /home/masterdonut/Projects/C-Projects/ACo
 
 /usr/include/x86_64-linux-gnu/bits/time64.h:
 
-/home/masterdonut/Projects/C-Projects/ACompiler/include/utils/arraylist.h:
-
-/home/masterdonut/Projects/C-Projects/ACompiler/include/tokenizer/tokenizer.h:
-
-/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
-
-/home/masterdonut/Projects/C-Projects/ACompiler/include/parser/parser.h:
-
-libutils.a:
-
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
-
-/usr/include/limits.h:
-
-/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+/home/calebb/Projects/CProjects/ACompiler/include/utils/hashtable.h:
 
 libtokenizer.a:
 
@@ -181,7 +155,27 @@ CMakeFiles/ACompiler.dir/src/main.c.o:
 
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
 
+libparser.a:
+
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
+
+/lib/x86_64-linux-gnu/libc.so.6:
+
+/home/calebb/Projects/CProjects/ACompiler/include/tokenizer/tokens.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/include/limits.h:
+
 /usr/lib/x86_64-linux-gnu/Scrt1.o:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o:
+
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
+
+/home/calebb/Projects/CProjects/ACompiler/include/tokenizer/tokenizer.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
 
@@ -189,11 +183,31 @@ CMakeFiles/ACompiler.dir/src/main.c.o:
 
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
-/home/masterdonut/Projects/C-Projects/ACompiler/include/utils/hashtable.h:
-
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/15/include/stdbool.h:
+
+libutils.a:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/include/stdarg.h:
+
+/usr/include/limits.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
 /usr/lib/x86_64-linux-gnu/crti.o:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
+
+/usr/include/stdc-predef.h:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o:
+
+/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
+
+/usr/lib/x86_64-linux-gnu/crtn.o:
 
 /usr/lib/x86_64-linux-gnu/libc_nonshared.a:
 
@@ -203,25 +217,21 @@ CMakeFiles/ACompiler.dir/src/main.c.o:
 
 /usr/lib/x86_64-linux-gnu/libc.so:
 
-/usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so:
-
 /usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
 
 /usr/include/endian.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc_s.so:
+
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
 
-libparser.a:
+/home/calebb/Projects/CProjects/ACompiler/include/utils/arraylist.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
+/home/calebb/Projects/CProjects/ACompiler/src/main.c:
 
-/lib/x86_64-linux-gnu/libc.so.6:
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a:
-
-/home/masterdonut/Projects/C-Projects/ACompiler/include/tokenizer/tokens.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o:
+/usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a:
 
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
@@ -229,25 +239,25 @@ libparser.a:
 
 /usr/include/stdlib.h:
 
-/usr/include/strings.h:
-
-/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
+/usr/include/x86_64-linux-gnu/bits/endian.h:
 
 /usr/lib/x86_64-linux-gnu/libgcc_s.so.1:
 
 /usr/include/string.h:
 
-/usr/include/x86_64-linux-gnu/bits/endian.h:
+/usr/include/strings.h:
 
-/home/masterdonut/Projects/C-Projects/ACompiler/src/main.c:
-
-/usr/include/x86_64-linux-gnu/bits/floatn.h:
+/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
+/usr/include/x86_64-linux-gnu/bits/long-double.h:
+
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
-/usr/include/x86_64-linux-gnu/bits/long-double.h:
+/usr/include/x86_64-linux-gnu/bits/floatn.h:
+
+/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
 /usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
 
@@ -255,23 +265,13 @@ libparser.a:
 
 /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
-
 /usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
-/usr/include/stdc-predef.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o:
-
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
-
-/usr/lib/x86_64-linux-gnu/crtn.o:
-
-/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
+/home/calebb/Projects/CProjects/ACompiler/include/parser/parser.h:
 
 liberrors.a:
 
