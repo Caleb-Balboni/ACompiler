@@ -30,4 +30,8 @@ let &WORD foo = 1; <-- this will hold the address 0x00000001, which can be acces
 
 ### Variable Decleration:
 
-Variables are created using the `let` keyword followed by a type an name.
+Variables are created using the `let` keyword followed by a type an name and an identifer.
+
+EX:
+- let QWORD foo; <-- will create a varibale foo with the QWORD type.
+- let QWORD foo = 1; <-- will create a varibale foo with the QWORD type, and set it equal to 1.
