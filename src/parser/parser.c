@@ -853,7 +853,7 @@ static void print_cast_expr(Node* node, const int depth) {
   cast_expr castexpr = node->castExpr;
   const char* type[2] = { "CAST:", get_var_t(castexpr.var_t) };
   print_with_indent_arr(type, sizeof(type), depth);
-  print_primary_types(castexpr.inner, 1 + depth);
+  print_binary_expr(castexpr.inner, 1 + depth);
 }
 
 static void print_primary_types(Node* node, const int depth) {
