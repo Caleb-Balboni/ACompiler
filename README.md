@@ -21,8 +21,10 @@ A programs are compiled into raw assembly and assembled with `as` or linked with
 - DWORD --> holds 4 bytes of information (32 bits)
 - QWORD --> holds 8 bytes of information (64 bits)
 
-Any of these types can have a `&` appended to the beginning to turn them into an address type.
+Any of these types can have a `&` appended to the beginning to turn them into an address type.  
+
 These types can be derefrenced with the `[]` operator which will grab the type specified after the `&`.
+
 EX: let &WORD foo = 1; <-- this will hold the address 0x00000001, which can be accessed through [x] which will grab the memory at 0x00000001.
 
 ### Variable Decleration:
