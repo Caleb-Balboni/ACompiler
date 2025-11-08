@@ -132,18 +132,29 @@ char peekNext(Tokenizer* tokenizer) {
   return c;
 }
 
+static Token* createCommentToken(Tokenizer* tokenizer) {
+  Token* tok = malloc(sizeof(Token));
+  unsigned int count = 0;
+  char cur = peek(tokenizer);
+  while (cur != '\n') {
+    tok->lexeme[count] = cur;
+    advance(tokenizer);
+    cur = peek(tokenizer);
+    count += 1;
+  }
+  tok->lexeme[count] = '\0';
+  tok->type = T_COMMENT;
+  tok->length = count - 1;
+  tok->col = tokenizer->cur_line;
+  tok->line = tokenizer->cur_idx;
+  return tok;
+}
+
 char advance(Tokenizer* tokenizer) {
 	char temp = tokenizer->cur;
 	tokenizer->cur = fgetc(tokenizer->sourcefile);
 	tokenizer->cur_idx += 1;
 	return temp;
-}
-
-static Token* createEndl(int line, int column) {
-  Token* tok = malloc(sizeof(Token));
-  tok->type = T_ENDL;
-  tok->line = line;
-  tok->col = column;
 }
 
 Token* scanToken(Tokenizer* tokenizer) {
@@ -177,7 +188,11 @@ Token* scanToken(Tokenizer* tokenizer) {
       return createToken(T_STAR, tokenizer);
       break;
     case '/':
-      return createToken(match(tokenizer, '/') ? T_DIVDIV : T_DIVIDE, tokenizer);
+      if (match(tokenizer, '/')) {
+        return createCommentToken(tokenizer);
+      } else {
+        return createToken(T_DIVIDE, tokenizer);
+      } 
       break;
     case ':':
       return createToken(T_COLON, tokenizer);
@@ -207,7 +222,6 @@ Token* scanToken(Tokenizer* tokenizer) {
 			break;
 		case '\n':
 			tokenizer->cur_line+= 1;
-      return createEndl(tokenizer->cur_line, tokenizer->cur_idx);
 			break;
     default:
       if (isalpha(c)) {
