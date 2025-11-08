@@ -25,7 +25,8 @@ Any of these types can have a `&` appended to the beginning to turn them into an
 
 These types can be derefrenced with the `[]` operator which will grab the type specified after the `&`.
 
-EX: let &WORD foo = 1; <-- this will hold the address 0x00000001, which can be accessed through [x] which will grab the memory at 0x00000001.
+EX: 
+let &WORD foo = 1; <-- this will hold the address 0x00000001, which can be accessed through [x] which will grab the memory at 0x00000001.
 
 ### Variable Decleration:
 
