@@ -8,9 +8,9 @@
 typedef enum {
 	T_UNKNOWN,
   T_EOF,
-  T_ENDL,
   // LONGER TYPE LEXMES
   T_IDENTIFIER,
+  T_COMMENT,
   T_IF,
   T_ELSE,
   T_LET,
@@ -38,7 +38,6 @@ typedef enum {
   T_PLUS,
   T_STAR,
   T_DIVIDE,
-  T_DIVDIV,
   T_GREATER,
   T_LESS,
   T_NOT,

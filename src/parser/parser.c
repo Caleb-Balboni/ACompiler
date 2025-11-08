@@ -506,25 +506,9 @@ Node* parse_expr(Parser* parser) {
 
 Node* parse_comment_stmt(Parser* parser) {
   Token* temp = p_peek(parser);
-  assert(temp->type == T_DIVDIV);
+  assert(temp->type == T_COMMENT);
   p_advance(parser);
-  char* comment = NULL;
-  unsigned long len = 0;
-  temp = p_peek(parser);
-  unsigned char count = 0;
-  while (!p_match(temp, T_ENDL)) {
-    len += strlen(temp->lexeme);
-    comment = realloc(comment, len + 1); 
-    if (count == 0) {
-      strcpy(comment, temp->lexeme);
-    } else {
-      strcat(comment, temp->lexeme);
-    }
-    p_advance(parser);
-    temp = p_peek(parser);
-    count++;
-  }
-  return mk_comment_stmt(comment);
+  return mk_comment_stmt(temp->lexeme);
 }
 
 Node* parse_statment(Parser* parser) {
@@ -532,7 +516,7 @@ Node* parse_statment(Parser* parser) {
   if (p_match(temp, T_IF)) {
     return parse_if_stmt(parser);
   }
-  if (p_match(temp, T_DIVDIV)) {
+  if (p_match(temp, T_COMMENT)) {
     return parse_comment_stmt(parser);
   }
   if (p_match(temp, T_RETURN)) {
@@ -555,15 +539,18 @@ Node* parse_statment(Parser* parser) {
 Node* parse_block_stmt(Parser* parser) {
   assert(p_match(p_peek(parser), T_LEFT_BRACE));
   ArrayList* nodes = init_list(100);
-  Token* t = p_advance(parser);
+  p_advance(parser);
+  Token* t = p_peek(parser);
   while (!p_match(t, T_RIGHT_BRACE)) {
     Node* temp = NULL;
-    if (p_match(p_peek(parser), T_LET)) { 
+    if (p_match(t, T_LET)) { 
       temp = parse_var_decl(parser); 
+    } else if (p_match(t, T_COMMENT)) {
+      temp = parse_comment_stmt(parser); 
     } else {
       temp = parse_statment(parser);
     }
-    if (!temp) {
+    if  (!temp) {
       compile_error(p_peek(parser), "not a valid expression within the block");
     }
     add_list(nodes, temp);
@@ -705,7 +692,7 @@ Node* parse_program(ArrayList* nodes) {
     } else if (p_match(p_peek(parser), T_LET)) {
       temp = parse_var_decl(parser);
 
-    } else if (p_match(p_peek(parser), T_DIVDIV)) {
+    } else if (p_match(p_peek(parser), T_COMMENT)) {
       temp = parse_comment_stmt(parser);
     } else {
       compile_error(p_peek(parser), "only varibles and function can be declared in global scope");
