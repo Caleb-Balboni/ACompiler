@@ -736,6 +736,30 @@ src/utils/stack.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/utils/stack.c.s
 .PHONY : src/utils/stack.c.s
 
+test/test_tokenizer.o: test/test_tokenizer.c.o
+.PHONY : test/test_tokenizer.o
+
+# target to build an object file
+test/test_tokenizer.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_all.dir/build.make CMakeFiles/test_all.dir/test/test_tokenizer.c.o
+.PHONY : test/test_tokenizer.c.o
+
+test/test_tokenizer.i: test/test_tokenizer.c.i
+.PHONY : test/test_tokenizer.i
+
+# target to preprocess a source file
+test/test_tokenizer.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_all.dir/build.make CMakeFiles/test_all.dir/test/test_tokenizer.c.i
+.PHONY : test/test_tokenizer.c.i
+
+test/test_tokenizer.s: test/test_tokenizer.c.s
+.PHONY : test/test_tokenizer.s
+
+# target to generate assembly for a file
+test/test_tokenizer.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_all.dir/build.make CMakeFiles/test_all.dir/test/test_tokenizer.c.s
+.PHONY : test/test_tokenizer.c.s
+
 test/test_utils.o: test/test_utils.c.o
 .PHONY : test/test_utils.o
 
@@ -824,6 +848,9 @@ help:
 	@echo "... src/utils/stack.o"
 	@echo "... src/utils/stack.i"
 	@echo "... src/utils/stack.s"
+	@echo "... test/test_tokenizer.o"
+	@echo "... test/test_tokenizer.i"
+	@echo "... test/test_tokenizer.s"
 	@echo "... test/test_utils.o"
 	@echo "... test/test_utils.i"
 	@echo "... test/test_utils.s"

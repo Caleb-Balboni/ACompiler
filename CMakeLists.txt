@@ -19,6 +19,7 @@ pkg_check_modules(CRITERION REQUIRED criterion)
 
 add_executable(test_all
   test/test_utils.c
+  test/test_tokenizer.c
   # add more test .c files here
 )
 
