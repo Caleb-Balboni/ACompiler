@@ -1,0 +1,25 @@
+// example of the A language
+
+fn QWORD fib (DWORD n) {
+  
+  // example of an if else stmt
+  if (n <= 1) {
+    return n;
+  } else {
+    // something
+  }
+
+  // calling a function (and casting multiple statment)
+  return (QWORD)(call fib(n - 1) + call fib(n - 2));
+}
+
+// the main function
+fn DWORD main () {
+
+  // example of a variable decleration
+  let DWORD n = 5;
+  // refrence (pointer) decleration
+  let &DWORD y = &n;
+  let x = call fib(n);
+  return 0;
+}
