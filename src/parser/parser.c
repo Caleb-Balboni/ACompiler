@@ -321,7 +321,7 @@ Node* parse_call_expr(Parser* parser) {
     p_advance(parser);
     temp = p_peek(parser);
     if (!p_match(temp, T_IDENTIFIER)) {
-      compile_error(temp, "expected an identifer after teh call expression");
+      compile_error(temp, "expected an identifer after the call expression");
     }
     callee = parse_identifier_expr(parser);
     temp = p_peek(parser);
