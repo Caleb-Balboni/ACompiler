@@ -93,6 +93,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/tokenizer.dir/DependInfo.cmake"
   "CMakeFiles/parser.dir/DependInfo.cmake"
   "CMakeFiles/errors.dir/DependInfo.cmake"
+  "CMakeFiles/asm.dir/DependInfo.cmake"
   "CMakeFiles/utils.dir/DependInfo.cmake"
   "CMakeFiles/ACompiler.dir/DependInfo.cmake"
   "CMakeFiles/test_all.dir/DependInfo.cmake"

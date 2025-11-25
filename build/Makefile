@@ -530,6 +530,19 @@ errors/fast:
 .PHONY : errors/fast
 
 #=============================================================================
+# Target rules for targets named asm
+
+# Build rule for target.
+asm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 asm
+.PHONY : asm
+
+# fast build rule for target.
+asm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/build
+.PHONY : asm/fast
+
+#=============================================================================
 # Target rules for targets named utils
 
 # Build rule for target.
@@ -567,6 +580,54 @@ test_all: cmake_check_build_system
 test_all/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_all.dir/build.make CMakeFiles/test_all.dir/build
 .PHONY : test_all/fast
+
+src/assembler/assembler.o: src/assembler/assembler.c.o
+.PHONY : src/assembler/assembler.o
+
+# target to build an object file
+src/assembler/assembler.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/assembler/assembler.c.o
+.PHONY : src/assembler/assembler.c.o
+
+src/assembler/assembler.i: src/assembler/assembler.c.i
+.PHONY : src/assembler/assembler.i
+
+# target to preprocess a source file
+src/assembler/assembler.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/assembler/assembler.c.i
+.PHONY : src/assembler/assembler.c.i
+
+src/assembler/assembler.s: src/assembler/assembler.c.s
+.PHONY : src/assembler/assembler.s
+
+# target to generate assembly for a file
+src/assembler/assembler.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/assembler/assembler.c.s
+.PHONY : src/assembler/assembler.c.s
+
+src/assembler/emitter.o: src/assembler/emitter.c.o
+.PHONY : src/assembler/emitter.o
+
+# target to build an object file
+src/assembler/emitter.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/assembler/emitter.c.o
+.PHONY : src/assembler/emitter.c.o
+
+src/assembler/emitter.i: src/assembler/emitter.c.i
+.PHONY : src/assembler/emitter.i
+
+# target to preprocess a source file
+src/assembler/emitter.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/assembler/emitter.c.i
+.PHONY : src/assembler/emitter.c.i
+
+src/assembler/emitter.s: src/assembler/emitter.c.s
+.PHONY : src/assembler/emitter.s
+
+# target to generate assembly for a file
+src/assembler/emitter.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/asm.dir/build.make CMakeFiles/asm.dir/src/assembler/emitter.c.s
+.PHONY : src/assembler/emitter.c.s
 
 src/errors/errors.o: src/errors/errors.c.o
 .PHONY : src/errors/errors.o
@@ -736,6 +797,30 @@ src/utils/stack.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/utils.dir/build.make CMakeFiles/utils.dir/src/utils/stack.c.s
 .PHONY : src/utils/stack.c.s
 
+test/test_emitter.o: test/test_emitter.c.o
+.PHONY : test/test_emitter.o
+
+# target to build an object file
+test/test_emitter.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_all.dir/build.make CMakeFiles/test_all.dir/test/test_emitter.c.o
+.PHONY : test/test_emitter.c.o
+
+test/test_emitter.i: test/test_emitter.c.i
+.PHONY : test/test_emitter.i
+
+# target to preprocess a source file
+test/test_emitter.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_all.dir/build.make CMakeFiles/test_all.dir/test/test_emitter.c.i
+.PHONY : test/test_emitter.c.i
+
+test/test_emitter.s: test/test_emitter.c.s
+.PHONY : test/test_emitter.s
+
+# target to generate assembly for a file
+test/test_emitter.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_all.dir/build.make CMakeFiles/test_all.dir/test/test_emitter.c.s
+.PHONY : test/test_emitter.c.s
+
 test/test_tokenizer.o: test/test_tokenizer.c.o
 .PHONY : test/test_tokenizer.o
 
@@ -822,11 +907,18 @@ help:
 	@echo "... NightlyTest"
 	@echo "... NightlyUpdate"
 	@echo "... ACompiler"
+	@echo "... asm"
 	@echo "... errors"
 	@echo "... parser"
 	@echo "... test_all"
 	@echo "... tokenizer"
 	@echo "... utils"
+	@echo "... src/assembler/assembler.o"
+	@echo "... src/assembler/assembler.i"
+	@echo "... src/assembler/assembler.s"
+	@echo "... src/assembler/emitter.o"
+	@echo "... src/assembler/emitter.i"
+	@echo "... src/assembler/emitter.s"
 	@echo "... src/errors/errors.o"
 	@echo "... src/errors/errors.i"
 	@echo "... src/errors/errors.s"
@@ -848,6 +940,9 @@ help:
 	@echo "... src/utils/stack.o"
 	@echo "... src/utils/stack.i"
 	@echo "... src/utils/stack.s"
+	@echo "... test/test_emitter.o"
+	@echo "... test/test_emitter.i"
+	@echo "... test/test_emitter.s"
 	@echo "... test/test_tokenizer.o"
 	@echo "... test/test_tokenizer.i"
 	@echo "... test/test_tokenizer.s"

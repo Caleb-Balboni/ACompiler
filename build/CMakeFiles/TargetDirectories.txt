@@ -29,6 +29,7 @@
 /home/calebb/Projects/CProjects/ACompiler/build/CMakeFiles/tokenizer.dir
 /home/calebb/Projects/CProjects/ACompiler/build/CMakeFiles/parser.dir
 /home/calebb/Projects/CProjects/ACompiler/build/CMakeFiles/errors.dir
+/home/calebb/Projects/CProjects/ACompiler/build/CMakeFiles/asm.dir
 /home/calebb/Projects/CProjects/ACompiler/build/CMakeFiles/utils.dir
 /home/calebb/Projects/CProjects/ACompiler/build/CMakeFiles/ACompiler.dir
 /home/calebb/Projects/CProjects/ACompiler/build/CMakeFiles/test_all.dir

@@ -369,9 +369,17 @@ Node* parse_unary_expr(Parser* parser) {
     p_advance(parser);
     return mk_unary_expr(U_POS, parse_unary_expr(parser));
   }
+  if (p_match(temp, T_PLUS_PLUS)) {
+    p_advance(parser);
+    return mk_unary_expr(U_PLUS_PLUS, parse_unary_expr(parser));
+  }
   if (p_match(temp, T_MINUS)) {
     p_advance(parser);
     return mk_unary_expr(U_NEG, parse_unary_expr(parser));
+  }
+  if (p_match(temp, T_MINUS_MINUS)) {
+    p_advance(parser);
+    return mk_unary_expr(U_MINUS_MINUS, parse_unary_expr(parser));
   }
   if (p_match(temp, T_NOT)) {
     p_advance(parser);
