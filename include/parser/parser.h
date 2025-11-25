@@ -26,6 +26,8 @@ typedef enum {
 // Unary expr types
 typedef enum {
   U_POS, // +
+  U_PLUS_PLUS,
+  U_MINUS_MINUS,
   U_NEG, // -
   U_NOT, // !
   U_ADDR, // &

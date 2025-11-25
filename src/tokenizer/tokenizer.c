@@ -179,10 +179,10 @@ Token* scanToken(Tokenizer* tokenizer) {
       return createToken(T_DOT, tokenizer);
       break;
     case '-':
-      return createToken(T_MINUS, tokenizer);
+      return createToken(match(tokenizer, '-') ? T_MINUS_MINUS : T_MINUS, tokenizer);
       break;
     case '+':
-      return createToken(T_PLUS, tokenizer);
+      return createToken(match(tokenizer, '+') ? T_PLUS_PLUS : T_PLUS, tokenizer);
       break;
     case '*':
       return createToken(T_STAR, tokenizer);

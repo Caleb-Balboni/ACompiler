@@ -1,1 +1,1 @@
-/usr/bin/cc -g -Wl,--dependency-file=CMakeFiles/ACompiler.dir/link.d CMakeFiles/ACompiler.dir/src/main.c.o -o ACompiler  libtokenizer.a libutils.a libparser.a liberrors.a
+/usr/bin/cc -g -Wl,--dependency-file=CMakeFiles/ACompiler.dir/link.d CMakeFiles/ACompiler.dir/src/main.c.o -o ACompiler  libtokenizer.a libutils.a libparser.a liberrors.a libasm.a
