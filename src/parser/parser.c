@@ -842,6 +842,7 @@ static const char* get_func_params(ArrayList* params) {
     const char* ident = get_ident(param.ident);
     const char* vartype = get_var_t(param.type);
     alloc_size += strlen(ident) + strlen(vartype) + format_size + 1 + 2;
+    if (alloc_size <= 0) { continue; }
     ret = realloc(ret, alloc_size);
     if (i == 0) {
       strcpy(ret, "Param: ");

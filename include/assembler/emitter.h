@@ -50,7 +50,6 @@ typedef struct {
 
 typedef struct {
   operandkind kind;
-  regsize size;
   union {
     reg_t reg;
     long long imm;
