@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <assert.h>
 #include <string.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -52,6 +53,7 @@ void emit_print(emitter* emitter, const char* fmt, ...) {
     buf[buf_idx] = '\0';
     fprintf(emitter->file, "%s", buf);
   }
+  fprintf(emitter->file, "\n");
 }
 
 void emit_text(emitter* emitter) {
@@ -65,5 +67,34 @@ void emit_data(emitter* emitter) {
 }
 
 void emit_label(emitter* emitter, const char* name) {
+  assert(strlen(name) > 0);
   emit_print(emitter, "%s:", name);
+}
+
+void emit_globl(emitter* emitter, const char* name) {
+  assert(strlen(name) > 0);
+  emit_print(emitter, ".globl %s", name);
+}
+
+static const char* reg_to_str(regsize size, regid id) {
+  // TODO (should convert register to its string representation)
+}
+
+static const char* operand_to_str(operand_t* op) {
+  switch(op->kind) {
+    case OP_REG:
+      reg_t reg = op->reg;
+      return reg_to_str(reg->size, reg->id);    
+    case OP_IMM:
+      char* num_str;
+      sprintf(num_str, "%d", op->imm);
+      assert(strlen(num_str) > 0);
+      return num_str;
+    case OP_MEM:
+      
+  }
+}
+
+void emit_mov(emitter* emitter, operand_t* src, operand_t* dest) {
+
 }
