@@ -44,7 +44,7 @@ typedef struct {
 } reg_t;
 
 typedef struct {
-  register_t base;
+  reg_t base;
   long disp;
 } mem_t;
 
@@ -63,11 +63,35 @@ typedef struct {
   unsigned int indent; 
 } emitter;
 
+// makes a register operand
+// @param id - the register id of the register
+// @param size - the size of the register
+// @return - the created register operand
+operand_t* mk_register(regid id, regsize size);
+
+// makes a immutable number operand
+// @param imm - the number value of the operand
+// @return - the created immutable operand
+operand_t* mk_immutable(long long imm);
+
+// makes a memory operand
+// @param id - the register id of the memory operand
+// @param size - the size of the memorys register
+// @param disp - the displacement of the register operand
+// @return - the newly created memory operand
+operand_t* mk_mem(regid id, regsize size, long disp);
+
+// creates a label operand
+// @param label - the label
+// @return - the newly created label operand
+operand_t* mk_label(const char* label);
+
 // initalizes the emitter with a FILE
 // @param out - the outfile for the emitter
 // @return - the initalized emitter
 emitter* emitter_init(const char* file_name);
 
+// only for testing purposes
 emitter* emitter_init2(FILE* file);
 
 void emit_print(emitter* emitter, const char* fmt, ...);
