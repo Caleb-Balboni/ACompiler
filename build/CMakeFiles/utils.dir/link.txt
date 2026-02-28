@@ -1,2 +1,0 @@
-/usr/bin/ar qc libutils.a CMakeFiles/utils.dir/src/utils/hashtable.c.o CMakeFiles/utils.dir/src/utils/arraylist.c.o CMakeFiles/utils.dir/src/utils/stack.c.o
-/usr/bin/ranlib libutils.a
