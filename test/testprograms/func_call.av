@@ -1,0 +1,7 @@
+fn DWORD add (DWORD a, DWORD b) {
+  return a + b;
+}
+fn DWORD main () {
+  let DWORD x = call add(1, 2);
+  return 0;
+}

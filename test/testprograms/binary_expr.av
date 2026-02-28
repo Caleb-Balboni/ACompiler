@@ -1,0 +1,4 @@
+fn DWORD main () {
+  let DWORD x = 1 + 2 * 3;
+  return 0;
+}

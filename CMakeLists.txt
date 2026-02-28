@@ -21,8 +21,13 @@ pkg_check_modules(CRITERION REQUIRED criterion)
 
 add_executable(test_all
   test/test_utils.c
+  test/test_utils_extended.c
   test/test_tokenizer.c
+  test/test_tokenizer_extended.c
   test/test_emitter.c
+  test/test_emitter_extended.c
+  test/test_parser.c
+  test/test_integration.c
 )
 
 target_include_directories(test_all PRIVATE
@@ -32,7 +37,7 @@ target_include_directories(test_all PRIVATE
 
 target_link_libraries(test_all PRIVATE
   ${CRITERION_LIBRARIES}
-  tokenizer utils asm
+  tokenizer utils asm parser errors
 )
 
 add_test(NAME all_tests COMMAND test_all)

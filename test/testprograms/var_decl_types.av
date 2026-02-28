@@ -1,0 +1,9 @@
+fn DWORD main () {
+  let BYTE a = 1;
+  let WORD b = 2;
+  let DWORD c = 3;
+  let QWORD d = 4;
+  let &DWORD e = &c;
+  let x = 99;
+  return 0;
+}
