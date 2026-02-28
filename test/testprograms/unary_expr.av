@@ -1,0 +1,5 @@
+fn DWORD main () {
+  let DWORD x = -5;
+  let DWORD y = !0;
+  return 0;
+}
