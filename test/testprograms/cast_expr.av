@@ -1,0 +1,5 @@
+fn QWORD main () {
+  let DWORD x = 5;
+  let QWORD y = (QWORD)x;
+  return 0;
+}
