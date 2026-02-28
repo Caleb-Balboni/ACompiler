@@ -1,0 +1,3 @@
+fn DWORD main () {
+  return 0;
+}

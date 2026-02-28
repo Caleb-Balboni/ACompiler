@@ -1,0 +1,4 @@
+let DWORD x = 42;
+fn DWORD main () {
+  return 0;
+}
