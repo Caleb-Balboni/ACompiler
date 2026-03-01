@@ -1,0 +1,50 @@
+# Doxyfile for The A Language compiler
+# Generated for use with doxygen-awesome-css theme
+
+#---------------------------------------------------------------------------
+# Project related
+#---------------------------------------------------------------------------
+PROJECT_NAME           = "The A Language"
+PROJECT_BRIEF          = "A compiled language targeting x86-64 assembly"
+OUTPUT_DIRECTORY       = docs/
+
+#---------------------------------------------------------------------------
+# Build related
+#---------------------------------------------------------------------------
+EXTRACT_ALL            = YES
+OPTIMIZE_OUTPUT_FOR_C  = YES
+TYPEDEF_HIDES_STRUCT   = YES
+
+#---------------------------------------------------------------------------
+# Input related
+#---------------------------------------------------------------------------
+INPUT                  = include/ src/ README.md
+RECURSIVE              = YES
+USE_MDFILE_AS_MAINPAGE = README.md
+FILE_PATTERNS          = *.h *.c *.md
+
+#---------------------------------------------------------------------------
+# Source browsing
+#---------------------------------------------------------------------------
+SOURCE_BROWSER         = YES
+STRIP_CODE_COMMENTS    = NO
+
+#---------------------------------------------------------------------------
+# HTML output
+#---------------------------------------------------------------------------
+GENERATE_HTML          = YES
+HTML_EXTRA_STYLESHEET  = doxygen-awesome-css/doxygen-awesome.css
+GENERATE_TREEVIEW      = YES
+DISABLE_INDEX          = NO
+FULL_SIDEBAR           = NO
+HTML_COLORSTYLE        = LIGHT
+
+#---------------------------------------------------------------------------
+# Other output formats
+#---------------------------------------------------------------------------
+GENERATE_LATEX         = NO
+
+#---------------------------------------------------------------------------
+# Graphs
+#---------------------------------------------------------------------------
+HAVE_DOT               = NO
