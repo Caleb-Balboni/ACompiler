@@ -6,7 +6,7 @@
 #include "utils/arraylist.h"
 #include "tokenizer/tokens.h"
 
-// Variable types
+/// Variable types
 typedef enum {
   LIT_STRING,
   LIT_BYTE,
@@ -15,7 +15,7 @@ typedef enum {
   LIT_QWORD,
 } lit_t;
 
-// Variable address types
+/// Variable address types
 typedef enum {
   ADR_BYTE,
   ADR_WORD,
@@ -23,31 +23,31 @@ typedef enum {
   ADR_QWORD,
 } lit_adr_t;
 
-// Unary expr types
+/// Unary expr types
 typedef enum {
-  U_POS, // +
-  U_PLUS_PLUS,
-  U_MINUS_MINUS,
-  U_NEG, // -
-  U_NOT, // !
-  U_ADDR, // &
+  U_POS,         ///< +
+  U_PLUS_PLUS,   ///< ++
+  U_MINUS_MINUS, ///< --
+  U_NEG,         ///< -
+  U_NOT,         ///< !
+  U_ADDR,        ///< &
 } unary_expr_t;
 
-// binary expr types
+/// binary expr types
 typedef enum {
-  B_ADD, // + 
-  B_SUB, // -
-  B_MUL, // *
-  B_DIV, // /
-  B_LESS, // <
-  B_GREATER, // >
-  B_EQUAL_EQUAL, // ==
-  B_NOT_EQUAL, // !=
-  B_GEQ, // >=
-  B_LEQ, // <= 
+  B_ADD,         ///< +
+  B_SUB,         ///< -
+  B_MUL,         ///< *
+  B_DIV,         ///< /
+  B_LESS,        ///< <
+  B_GREATER,     ///< >
+  B_EQUAL_EQUAL, ///< ==
+  B_NOT_EQUAL,   ///< !=
+  B_GEQ,         ///< >=
+  B_LEQ,         ///< <=
 } binary_expr_t;
 
-// types of AST nodes
+/// types of AST nodes
 typedef enum {
   // declerations
   AST_PROGRAM,
@@ -72,32 +72,32 @@ typedef enum {
   AST_TYPE_FUNC,
 } ast_t;
 
-// foward decleration
+/// foward decleration
 typedef struct Node Node;
 
-// DECLARATION STRUCTS
+/// DECLARATION STRUCTS
 
-// Starting AST node
+/// Starting AST node
 typedef struct {
   ArrayList* nodes;
 } program_decl;
- 
-// Variable decleration node
+
+/// Variable decleration node
 typedef struct {
   Node* ident;
   Node* type;
-  Node* assign; 
+  Node* assign;
 } var_decl;
 
-// Function delleration node
+/// Function delleration node
 typedef struct {
   Node* type;
   Node* block;
 } func_decl;
 
-// STATMENT STRUCTS
+/// STATMENT STRUCTS
 
-// Block statment node
+/// Block statment node
 typedef struct {
   ArrayList* nodes;
 } block_stmt;
@@ -109,18 +109,18 @@ typedef struct {
 } if_stmt;
 
 typedef struct {
-  char* comment; 
+  char* comment;
 } comment_stmt;
 
-// EXPRESSION STRUCTS
+/// EXPRESSION STRUCTS
 
 typedef struct {
-  const char* name; // name of identifer
+  const char* name; ///< name of identifer
 } identifier_expr;
 
 typedef struct {
   long long int num_value;
-  const char* str_value; 
+  const char* str_value;
 } literal_expr;
 
 typedef struct {
@@ -153,7 +153,7 @@ typedef struct {
   Node* return_val;
 } return_stmt;
 
-// TYPE STRUCTS
+/// TYPE STRUCTS
 typedef struct {
   bool is_adr;
   lit_adr_t type_adr;
@@ -162,24 +162,24 @@ typedef struct {
 
 typedef struct {
   Node* ident;
-  Node* type; // will be a var_t
+  Node* type; ///< will be a var_t
 } func_param;
 
 typedef struct {
   Node* ident;
-  Node* ret_t; // will be a var_type
-  ArrayList* params; // will be func_param
+  Node* ret_t;      ///< will be a var_type
+  ArrayList* params; ///< will be func_param
 } func_type;
 
 
-// MAIN NODE DEFENITION
+/// MAIN NODE DEFENITION
 struct Node {
   ast_t type;
   union {
     // declerations
     program_decl programDecl;
     var_decl varDecl;
-    func_decl funcDecl; 
+    func_decl funcDecl;
     // statments
     block_stmt blockStmt;
     if_stmt ifStmt;
@@ -200,85 +200,85 @@ struct Node {
   };
 };
 
-// makes a identifer expression node
-// @param token - the token representing the name of the expression
-// @return - the identifer expression node
+/// makes a identifer expression node
+/// @param token the token representing the name of the expression
+/// @return the identifer expression node
 Node* mk_identifer_expr(Token* token);
 
-// creates a new function type 
-// @param ret - the return expr of the func
-// @param type - the type of the function param
-// @param ident - the identifer expression represent the name of the function
-// @return - the new function type node
+/// creates a new function type
+/// @param ret the return expr of the func
+/// @param params the type of the function param
+/// @param ident the identifer expression represent the name of the function
+/// @return the new function type node
 Node* mk_func_t(Node* ret, ArrayList* params, Node* ident);
 
-// creates a new function paramerters
-// @param ident - identifer for this function paramerters
-// @param type - the type of the function parameter
-// @return - the new function param node
+/// creates a new function paramerters
+/// @param ident identifer for this function paramerters
+/// @param type the type of the function parameter
+/// @return the new function param node
 Node* mk_func_param(Node* ident, Node* type);
 
-// creates a new variable type node
-// @param is_adr - determines if this is an address var, or not
-// @param type_adr - if this is an address type, this will hold the adr type
-// @param type - if thsi is NOT and address type, this will hold the var type
+/// creates a new variable type node
+/// @param is_adr determines if this is an address var, or not
+/// @param type_adr if this is an address type, this will hold the adr type
+/// @param type if this is NOT and address type, this will hold the var type
 Node* mk_var_type(bool is_adr, lit_adr_t type_adr, lit_t type);
 
-// creates a new return expression
-// @param return_val - the expression that dictates the return expression value
-// @return - the newly created return expression
-Node* mk_return_stmt(Node* return_val); 
+/// creates a new return expression
+/// @param return_val the expression that dictates the return expression value
+/// @return the newly created return expression
+Node* mk_return_stmt(Node* return_val);
 
 Node* mk_comment_stmt(char* comment);
 
-// makes a new cast expressions
-// @param type - the type of the cast
-// @param inner - the nodes being casted
-// @return - the newly created cast expression
+/// makes a new cast expressions
+/// @param type the type of the cast
+/// @param inner the nodes being casted
+/// @return the newly created cast expression
 Node* mk_cast_expr(Node* type, Node* inner);
 
-// makes a new call expression
-// @param callee - the function being called
-// @param args - the arguments to the function call
-// @return - the newly created call expression
+/// makes a new call expression
+/// @param callee the function being called
+/// @param args the arguments to the function call
+/// @return the newly created call expression
 Node* mk_call_expr(Node* callee, ArrayList* args);
 
-// makes a new assign expr
-// @param target - the target expression to assign tokens
-// @param val - the value to assign the target
-// @return - the newly created assign expression
+/// makes a new assign expr
+/// @param target the target expression to assign tokens
+/// @param val the value to assign the target
+/// @return the newly created assign expression
 Node* mk_assign_expr(Node* target, Node* val);
 
-// makes a new binary operator
-// @param op - the operator to apply to the binary expression
-// @param expr_left - the expression on the left of the operator
-// @param expr_right - the expression on the right of the operator
-// @return - the newly created binary expr
+/// makes a new binary operator
+/// @param op the operator to apply to the binary expression
+/// @param expr_left the expression on the left of the operator
+/// @param expr_right the expression on the right of the operator
+/// @return the newly created binary expr
 Node* mk_binary_expr(binary_expr_t op, Node* expr_left, Node* expr_right);
 
-// makes a new unary expression based upon an operator and an expression
-// @param op - the operator on the unary expression
-// @param expr - the expression to apply the unary operator tokens
-// @return - the newly created unary operator
+/// makes a new unary expression based upon an operator and an expression
+/// @param op the operator on the unary expression
+/// @param expr the expression to apply the unary operator tokens
+/// @return the newly created unary operator
 Node* mk_unary_expr(unary_expr_t op, Node* expr);
 
-// creates a new literal expression, with either a num_value or str val
-// @param num_value - the number value of the literal expression
-// @param str_value - the string value of the literal expression
-// @return - the newly created literal expression
+/// creates a new literal expression, with either a num_value or str val
+/// @param num_value the number value of the literal expression
+/// @param str_value the string value of the literal expression
+/// @return the newly created literal expression
 Node* mk_literal_expr(const char* num_value, const char* str_value);
 
-// creates a new identifer expressions
-// @param type - the type of the function
-// @param block - the block of ast nodes within the function
-// @return - the newly created identifer expression
+/// creates a new identifer expressions
+/// @param type the type of the function
+/// @param block the block of ast nodes within the function
+/// @return the newly created identifer expression
 Node* mk_func_decl(Node* type, Node* block);
 
-// makes a variable declereation
-// @param ident - the identifer for the variable
-// @param type - the type of the param (var_t)
-// @param assign - the exprssion this variable should be assigned to
-// @return - the newly created variable decleration node
+/// makes a variable declereation
+/// @param ident the identifer for the variable
+/// @param type the type of the param (var_t)
+/// @param assign the exprssion this variable should be assigned to
+/// @return the newly created variable decleration node
 Node* mk_var_decl(Node* ident, Node* type, Node* assign);
 
 typedef struct {
@@ -288,178 +288,182 @@ typedef struct {
   unsigned long long idx;
 } Parser;
 
-// makes initial node for the program
-// @param nodes - the list of nodes in the program
-// @return - the newly created program node
+/// makes initial node for the program
+/// @param nodes the list of nodes in the program
+/// @return the newly created program node
 Node* mk_program_decl(ArrayList* nodes);
 
-// parses function paramerters
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// parses function paramerters
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_func_param(Parser* parser);
 
-// parses a variable type node
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// parses a variable type node
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_var_t(Parser* parser);
 
-// parses an identifer expression
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// parses an identifer expression
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_identifier(Parser* parser);
 
-// finds and parsers all stmt
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// finds and parsers all stmt
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_statment(Parser* parser);
 
-// parses an equality statment
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// parses an equality statment
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_equal(Parser* parser);
 
-// find and parses all statments
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// find and parses all statments
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_expr(Parser* parser);
 
-// parses a literal expression
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// parses a literal expression
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_literal_expr(Parser* parser);
 
-// parses primary expression (literals, identifers)
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// parses primary expression (literals, identifers)
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_primary(Parser* parser);
 
-// parses a unary expression 
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// parses a unary expression
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_unary_expr(Parser* parser);
 
-// parses a factor (* or /) of a binary expression
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// parses a factor (* or /) of a binary expression
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_factor(Parser* parser);
 
-// parses a term (+ or -), of a binary expression
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// parses a term (+ or -), of a binary expression
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_term(Parser* parser);
 
-// parses a comparison expression (>, <)
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// parses a comparison expression (>, <)
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_compare(Parser* parser);
 
-// parses a binary expression
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// parses a binary expression
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_binary_expr(Parser* parser);
 
-// parses a cast expression
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// parses a cast expression
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_cast_expr(Parser* parser);
 
-// parses an assign expression
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// parses an assign expression
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_assign_expr(Parser* parser);
 
-// parses a return expression
-// @param parser - the parser to parse from
-// @return - the newly created node
+/// parses a return expression
+/// @param parser the parser to parse from
+/// @return the newly created node
 Node* parse_return_stmt(Parser* parser);
 
-// parses a comment stmt
-// @param parser - the parser to parse from
-// @return - returns a comment node
+/// parses a comment stmt
+/// @param parser the parser to parse from
+/// @return returns a comment node
 Node* parse_comment_stmt(Parser* parser);
 
-// parses a list of params for a function call
-// @param parser - the parser to parse from
-// @return - the array of arguments to the function call
+/// parses a list of params for a function call
+/// @param parser the parser to parse from
+/// @return the array of arguments to the function call
 ArrayList* parse_args(Parser* parser);
 
-// parses a call expression
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// parses a call expression
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_call_expr(Parser* parser);
 
-// parses an if statment
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// parses an if statment
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_if_stmt(Parser* parser);
 
-// parses a block statment
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// parses a block statment
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_block_stmt(Parser* parser);
 
-// parses a variable declerations
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// parses a variable declerations
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_var_decl(Parser* parser);
 
-// parses the entire list of function params
-// @param parser - the parser to parse from
-// @return - an array of function params
+/// parses the entire list of function params
+/// @param parser the parser to parse from
+/// @return an array of function params
 ArrayList* parse_all_func_params(Parser* parser);
 
-// parses the type of the function
-// @param parser - the parser to parse from
-// @return - the parsed node
+/// parses the type of the function
+/// @param parser the parser to parse from
+/// @return the parsed node
 Node* parse_func_type(Parser* parser);
 
-// parses a function decleration
-// @param parser - the parser to parse from
-// @return - the node the function creates
+/// parses a function decleration
+/// @param parser the parser to parse from
+/// @return the node the function creates
 Node* parse_func_decl(Parser* parser);
 
-// main parser function, parses a list of nodes into AST 
-// @param nodes - the list of nodes to parse
-// @return - the head of the ast
+/// main parser function, parses a list of nodes into AST
+/// @param nodes the list of nodes to parse
+/// @return the head of the ast
 Node* parse_program(ArrayList* nodes);
 
-// inits the parser with an array of tokens
-// @param tokens - the list of tokens to init the parser with
-// @return - the newly created parser
+/// inits the parser with an array of tokens
+/// @param tokens the list of tokens to init the parser with
+/// @return the newly created parser
 Parser* init_parser(ArrayList* tokens);
 
-// returns whether or not the parser has gone through all tokens
-// @param parser - the parser to checks
-// @return - true if parser has gone through all tokens, false otherwise
+/// returns whether or not the parser has gone through all tokens
+/// @param parser the parser to checks
+/// @return true if parser has gone through all tokens, false otherwise
 bool p_is_end(Parser* parser);
 
-// advances the given parser foward one token 
-// @param parser - the parser to advances
+/// advances the given parser foward one token
+/// @param parser the parser to advances
 Token* p_advance(Parser* parser);
 
-// checks if a given token is a type token
-// @param token - the token to check 
-// @return - true if the tokens is a var type token false otherwise
+/// checks if a given token is a type token
+/// @param token the token to check
+/// @return true if the tokens is a var type token false otherwise
 bool is_var_type(Token* token);
 
-// peeks at the incoming token of the parser
-// @param parser - the parser to peek into
-// @return - the incoming token
+/// peeks at the incoming token of the parser
+/// @param parser the parser to peek into
+/// @return the incoming token
 Token* p_peek(Parser* parser);
 
-// peeks at the next incoming token
-// @param parser - the parser the parse from
-// @return - the next peeked node
+/// peeks at the next incoming token
+/// @param parser the parser the parse from
+/// @return the next peeked node
 Token* p_peek_next(Parser* parser);
 
-// checks if a given token matches a given type
-// @param token - the token to match token
-// @param type - the type of token to match to
-// @return - true if the token matches the type, false otherwise
+/// checks if a given token matches a given type
+/// @param token the token to match token
+/// @param type the type of token to match to
+/// @return true if the token matches the type, false otherwise
 bool p_match(Token* token, Token_type type);
 
-// prints out the AST
-// @param nodes - the head node of the ast
+/// recursively frees an AST node and all its children
+/// @param node the node to free
+void free_node(Node* node);
+
+/// prints out the AST
+/// @param head the head node of the ast
 void print_ast(Node* head);
 
 #endif

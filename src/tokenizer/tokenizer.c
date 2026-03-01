@@ -16,10 +16,9 @@ Token_type* createTokenType(Token_type type) {
 }
 
 void initTokenMap(void) {
-	
-	token_hash = create_ht(100);
-	add_ht(token_hash, "call", createTokenType(T_CALL)); 
-	add_ht(token_hash, "let", createTokenType(T_LET)); 
+  token_hash = create_ht(100);
+  add_ht(token_hash, "call", createTokenType(T_CALL)); 
+  add_ht(token_hash, "let", createTokenType(T_LET)); 
   add_ht(token_hash, "BYTE", createTokenType(T_BYTE));
   add_ht(token_hash, "WORD", createTokenType(T_WORD));
   add_ht(token_hash, "DWORD", createTokenType(T_DWORD));
@@ -43,7 +42,7 @@ void getCurWord(Tokenizer* tokenizer, char* buf) {
 }
 
 Token* createToken(Token_type type, Tokenizer* tokenizer) {
-	Token* temp = malloc(sizeof(Token) * 1);
+  Token* temp = malloc(sizeof(Token) * 1);
 	assert(temp);
 	temp->type = type;
   temp->length = tokenizer->cur_idx - tokenizer->start_idx;

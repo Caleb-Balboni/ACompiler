@@ -170,6 +170,79 @@ Node* mk_program_decl(ArrayList* nodes) {
   return n;
 }
 
+static void free_node_list(ArrayList* list) {
+  if (!list) return;
+  for (int i = 0; i < list->length; i++) {
+    free_node((Node*)list->items[i]);
+    list->items[i] = NULL;
+  }
+  free(list->items);
+  free(list);
+}
+
+void free_node(Node* node) {
+  if (!node) return;
+  switch (node->type) {
+    case AST_PROGRAM:
+      free_node_list(node->programDecl.nodes);
+      break;
+    case AST_VAR_DECL:
+      free_node(node->varDecl.ident);
+      free_node(node->varDecl.type);
+      free_node(node->varDecl.assign);
+      break;
+    case AST_FUNC_DECL:
+      free_node(node->funcDecl.type);
+      free_node(node->funcDecl.block);
+      break;
+    case AST_BLOCK:
+      free_node_list(node->blockStmt.nodes);
+      break;
+    case AST_IF:
+      free_node(node->ifStmt.cond);
+      free_node(node->ifStmt.then_branch);
+      free_node(node->ifStmt.else_branch);
+      break;
+    case AST_RETURN:
+      free_node(node->returnStmt.return_val);
+      break;
+    case AST_UNARY:
+      free_node(node->unaryExpr.expr);
+      break;
+    case AST_BINARY:
+      free_node(node->binaryExpr.expr_left);
+      free_node(node->binaryExpr.expr_right);
+      break;
+    case AST_ASSIGN:
+      free_node(node->assignExpr.target);
+      free_node(node->assignExpr.val);
+      break;
+    case AST_CALL:
+      free_node(node->callExpr.callee);
+      free_node_list(node->callExpr.args);
+      break;
+    case AST_CAST:
+      free_node(node->castExpr.var_t);
+      free_node(node->castExpr.inner);
+      break;
+    case AST_FUNC_PARAM:
+      free_node(node->funcParam.ident);
+      free_node(node->funcParam.type);
+      break;
+    case AST_TYPE_FUNC:
+      free_node(node->function_t.ident);
+      free_node(node->function_t.ret_t);
+      free_node_list(node->function_t.params);
+      break;
+    case AST_COMMENT:
+    case AST_IDENTIFIER:
+    case AST_LITERAL:
+    case AST_TYPE_VAR:
+      break;
+  }
+  free(node);
+}
+
 Node* parse_var_type(Parser* parser) {
   Node* n = malloc(sizeof(Node));
   Token* t = p_peek(parser);
@@ -709,6 +782,7 @@ Node* parse_program(ArrayList* nodes) {
   }
   Node* program = mk_program_decl(p_nodes);
   assert(program != NULL);
+  free(parser);
   return program;
 }
 
@@ -831,7 +905,7 @@ static void print_var_decl(Node* node, const int depth) {
   }
 }
 
-static const char* get_func_params(ArrayList* params) {
+static char* get_func_params(ArrayList* params) {
   char* ret = NULL;
   unsigned int format_size = 7; // "param: " 
   unsigned int ident_size = 2;
@@ -841,7 +915,7 @@ static const char* get_func_params(ArrayList* params) {
     func_param param = temp->funcParam;
     const char* ident = get_ident(param.ident);
     const char* vartype = get_var_t(param.type);
-    alloc_size += strlen(ident) + strlen(vartype) + format_size + 1 + 2;
+    alloc_size += strlen(ident) + strlen(vartype) + format_size + 4;
     if (alloc_size <= 0) { continue; }
     ret = realloc(ret, alloc_size);
     if (i == 0) {
@@ -1057,8 +1131,10 @@ static void print_func_type(Node* node, const int depth) {
   func_type f_type = node->function_t;
   const char* func_sig[4] = { "FUNCTION:", get_ident(f_type.ident), "RETURN TYPE:", get_var_t(f_type.ret_t) };
   print_with_indent_arr(func_sig, sizeof(func_sig), depth);
-  const char* func_param[2] = { "PARAMS:", get_func_params(f_type.params) };
+  char* params = get_func_params(f_type.params);
+  const char* func_param[2] = { "PARAMS:", params };
   print_with_indent_arr(func_param, sizeof(func_param), depth);
+  free(params);
 }
 
 static void print_func_decl(Node* node, const int depth) {

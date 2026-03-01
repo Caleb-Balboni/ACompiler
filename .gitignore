@@ -33,6 +33,9 @@ compile_commands.json
 .clangd/index/
 .clangd/indexes/
 
+# Doxygen output
+docs/
+
 # OS
 .DS_Store
 Thumbs.db

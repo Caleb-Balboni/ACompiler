@@ -36,6 +36,7 @@ int main(int argc, char *argv[]) {
 	}
   Node* head = parse_program(array);
   print_ast(head);
+  free_node(head);
   destroy_list(array);
   fclose(source_file);
 	return 0;
