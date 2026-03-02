@@ -74,6 +74,14 @@ Node* mk_call_expr(Node* callee, ArrayList* args) {
   return n;
 }
 
+Node* mk_index_expr(Node* target, Node* index) {
+  Node* n = malloc(sizeof(Node));
+  n->type = AST_INDEX;
+  index_expr ie = { .target = target, .index = index };
+  n->arrayIndex = ie;
+  return n;
+}
+
 Node* mk_assign_expr(Node* target, Node* val) {
   Node* n = malloc(sizeof(Node));
   n->type = AST_ASSIGN;
@@ -234,6 +242,13 @@ void free_node(Node* node) {
       free_node(node->function_t.ret_t);
       free_node_list(node->function_t.params);
       break;
+    case AST_INDEX:
+      free_node(node->arrayIndex.target);
+      free_node(node->arrayIndex.index);
+      break;
+    case AST_ARRAY_LIT:
+      free_node_list(node->arrayLit.elements);
+      break;
     case AST_COMMENT:
     case AST_IDENTIFIER:
     case AST_LITERAL:
@@ -243,53 +258,77 @@ void free_node(Node* node) {
   free(node);
 }
 
+static bool get_var_type(Parser* parser, var_t* variable, Token* t) {
+ if (p_match(t, T_AND)) {
+    Token* temp = p_advance(parser);
+    temp = p_peek(parser);
+    variable->is_adr = true;
+    switch(temp->type) {
+      case T_BYTE:
+        variable->type_adr = ADR_BYTE;
+        break;
+      case T_WORD:
+        variable->type_adr = ADR_WORD;
+        break;
+      case T_DWORD:
+        variable->type_adr = ADR_DWORD;
+        break;
+      case T_QWORD:
+        variable->type_adr = ADR_QWORD;
+        break;
+      default:
+        compile_error(t, "& requires a type");
+    }
+    return true;
+  } else {
+    variable->is_adr = false;
+    switch(t->type) {
+      case T_BYTE:
+        variable->type = LIT_BYTE;
+        break;
+      case T_WORD:
+        variable->type = LIT_WORD;
+        break;
+      case T_DWORD:
+        variable->type = LIT_DWORD;
+        break;
+      case T_QWORD:
+        variable->type = LIT_QWORD;
+        break;
+      default:
+        variable->type = LIT_QWORD;
+        return false;
+    }
+    return true;
+  }
+}
+
 Node* parse_var_type(Parser* parser) {
   Node* n = malloc(sizeof(Node));
   Token* t = p_peek(parser);
   var_t variable;
   n->type = AST_TYPE_VAR;
-  if (p_match(t, T_AND)) {
-    Token* temp = p_advance(parser);
-    temp = p_peek(parser);
-    variable.is_adr = true;
-    switch(temp->type) {
-      case T_BYTE:
-        variable.type_adr = ADR_BYTE;
-        break;
-      case T_WORD:
-        variable.type_adr = ADR_WORD;
-        break;
-      case T_DWORD:
-        variable.type_adr = ADR_DWORD;
-        break;
-      case T_QWORD:
-        variable.type_adr = ADR_QWORD;
-        break;
-      default:
-        compile_error(t, "& requires a type");
-    }
-  } else {
-    variable.is_adr = false;
-    switch(t->type) {
-      case T_BYTE:
-        variable.type = LIT_BYTE;
-        break;
-      case T_WORD:
-        variable.type = LIT_WORD;
-        break;
-      case T_DWORD:
-        variable.type = LIT_DWORD;
-        break;
-      case T_QWORD:
-        variable.type = LIT_QWORD;
-        break;
-      default:
-        variable.type = LIT_QWORD;
-        n->variable_t = variable;
-        return n;
-    }
+  bool has_explicit_type = get_var_type(parser, &variable, t);
+  if (has_explicit_type) {
+    p_advance(parser);
   }
-  p_advance(parser);
+  if (p_match(p_peek(parser), T_LEFT_BRACKET)) {
+    p_advance(parser);
+    Token* len_tok = p_peek(parser);
+    if (!p_match(len_tok, T_NUMBER_LIT)) {
+      compile_error(len_tok, "array size must be a number literal");
+    }
+    variable.array_len = (unsigned int)strtoul(len_tok->lexeme, NULL, 10);
+    variable.is_array = true;
+    p_advance(parser);
+    if (!p_match(p_peek(parser), T_RIGHT_BRACKET)) {
+      compile_error(p_peek(parser), "expected closing ] after array size");
+    }
+    p_advance(parser);
+  } else {
+    variable.is_array = false;
+    variable.array_len = 0;
+  }
   n->variable_t = variable;
   return n;
 }
@@ -436,6 +475,20 @@ Node* parse_primary(Parser* parser) {
   return NULL;
 }
 
+Node* parse_postfix(Parser* parser) {
+  Node* node = parse_primary(parser);
+  while (p_match(p_peek(parser), T_LEFT_BRACKET)) {
+    p_advance(parser);
+    Node* index = parse_binary_expr(parser);
+    if (!p_match(p_peek(parser), T_RIGHT_BRACKET)) {
+      compile_error(p_peek(parser), "expected closing ] after index expression");
+    }
+    p_advance(parser);
+    node = mk_index_expr(node, index);
+  }
+  return node;
+}
+
 Node* parse_unary_expr(Parser* parser) {
   Token* temp = p_peek(parser);
   if (p_match(temp, T_PLUS)) {
@@ -462,7 +515,7 @@ Node* parse_unary_expr(Parser* parser) {
     p_advance(parser);
     return mk_unary_expr(U_ADDR, parse_unary_expr(parser));
   }
-  return parse_primary(parser);
+  return parse_postfix(parser);
 }
 
 Node* parse_factor(Parser* parser) {
@@ -564,7 +617,7 @@ Node* parse_assign_expr(Parser* parser) {
   Token* temp = p_peek(parser);
   if (p_match(temp, T_EQUAL)) {
     p_advance(parser);
-    if (!left || left->type != AST_IDENTIFIER) {
+    if (!left || (left->type != AST_IDENTIFIER && left->type != AST_INDEX)) {
       compile_error(p_peek(parser), "left side of = must be assignable");
     } 
     Node* value = parse_assign_expr(parser);
@@ -869,30 +922,38 @@ static const char* get_ident(Node* node) {
 static const char* get_var_t(Node* node) {
   assert(node->type == AST_TYPE_VAR);
   var_t type = node->variable_t;
+  const char* base = NULL;
   if (type.is_adr) {
     switch(type.type_adr) {
       case ADR_BYTE:
-        return "&BYTE";
+        base = "&BYTE"; break;
       case ADR_WORD:
-        return "&WORD";
+        base = "&WORD"; break;
       case ADR_DWORD:
-        return "&DWORD";
+        base = "&DWORD"; break;
       case ADR_QWORD:
-        return "&QWORD";
+        base = "&QWORD"; break;
     }
   } else {
     switch(type.type) {
       case LIT_BYTE:
-        return "BYTE";
+        base = "BYTE"; break;
       case LIT_WORD:
-        return "WORD";
+        base = "WORD"; break;
       case LIT_DWORD:
-        return "DWORD";
+        base = "DWORD"; break;
       case LIT_QWORD:
-        return "QWORD";
+        base = "QWORD"; break;
+      default:
+        base = "QWORD"; break;
     }
   }
-  return NULL;
+  if (type.is_array) {
+    static char buf[64];
+    snprintf(buf, sizeof(buf), "%s[%u]", base, type.array_len);
+    return buf;
+  }
+  return base;
 }
 
 static void print_var_decl(Node* node, const int depth) {
@@ -939,6 +1000,14 @@ static void print_cast_expr(Node* node, const int depth) {
   print_binary_expr(castexpr.inner, 1 + depth);
 }
 
+static void print_index_expr(Node* node, const int depth) {
+  assert(node->type == AST_INDEX);
+  index_expr idx = node->arrayIndex;
+  print_with_indent_s("INDEX:", depth);
+  print_binary_expr(idx.target, 1 + depth);
+  print_binary_expr(idx.index, 1 + depth);
+}
+
 static void print_primary_types(Node* node, const int depth) {
   switch(node->type) {
     case AST_CAST:
@@ -946,6 +1015,9 @@ static void print_primary_types(Node* node, const int depth) {
       break;
     case AST_CALL:
       print_call_expr(node, depth);
+      break;
+    case AST_INDEX:
+      print_index_expr(node, depth);
       break;
     case AST_IDENTIFIER:
       const char* identifier[2] = { "IDENT:", get_ident(node) };

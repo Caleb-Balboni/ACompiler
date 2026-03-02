@@ -31,6 +31,8 @@ typedef enum {
 	T_RIGHT_PAREN,
   T_LEFT_BRACE,
   T_RIGHT_BRACE,
+  T_LEFT_BRACKET,
+  T_RIGHT_BRACKET,
   T_COMMA,
   T_AND,
   T_DOT,
