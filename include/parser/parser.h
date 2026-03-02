@@ -67,6 +67,8 @@ typedef enum {
   AST_CALL,
   AST_CAST,
   AST_FUNC_PARAM,
+  AST_ARRAY_LIT,
+  AST_INDEX,
   // types
   AST_TYPE_VAR,
   AST_TYPE_FUNC,
@@ -135,6 +137,15 @@ typedef struct {
 } binary_expr;
 
 typedef struct {
+  ArrayList* elements;
+} array_lit_expr;
+
+typedef struct {
+  Node* target;
+  Node* index;
+} index_expr;
+
+typedef struct {
   Node* target;
   Node* val;
 } assign_expr;
@@ -156,6 +167,8 @@ typedef struct {
 /// TYPE STRUCTS
 typedef struct {
   bool is_adr;
+  bool is_array;
+  unsigned int array_len;
   lit_adr_t type_adr;
   lit_t type;
 } var_t;
@@ -193,6 +206,8 @@ struct Node {
     cast_expr castExpr;
     return_stmt returnStmt;
     comment_stmt commentStmt;
+    array_lit_expr arrayLit;
+    index_expr arrayIndex;
     // types
     func_param funcParam;
     var_t variable_t;
@@ -230,6 +245,12 @@ Node* mk_var_type(bool is_adr, lit_adr_t type_adr, lit_t type);
 Node* mk_return_stmt(Node* return_val);
 
 Node* mk_comment_stmt(char* comment);
+
+/// makes a new index expression
+/// @param target the expression being indexed
+/// @param index the index expression
+/// @return the newly created index expression
+Node* mk_index_expr(Node* target, Node* index);
 
 /// makes a new cast expressions
 /// @param type the type of the cast
@@ -332,6 +353,11 @@ Node* parse_literal_expr(Parser* parser);
 /// @param parser the parser to parse from
 /// @return the parsed node
 Node* parse_primary(Parser* parser);
+
+/// parses postfix expressions (index access)
+/// @param parser the parser to parse from
+/// @return the parsed node
+Node* parse_postfix(Parser* parser);
 
 /// parses a unary expression
 /// @param parser the parser to parse from

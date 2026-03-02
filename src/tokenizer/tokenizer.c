@@ -171,6 +171,12 @@ Token* scanToken(Tokenizer* tokenizer) {
     case '}':
       return createToken(T_RIGHT_BRACE, tokenizer);
       break;
+    case '[':
+      return createToken(T_LEFT_BRACKET, tokenizer);
+      break;
+    case ']':
+      return createToken(T_RIGHT_BRACKET, tokenizer);
+      break;
     case ',':
       return createToken(T_COMMA, tokenizer);
       break;
