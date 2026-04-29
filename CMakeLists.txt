@@ -28,6 +28,7 @@ add_executable(test_all
   test/test_emitter_extended.c
   test/test_parser.c
   test/test_integration.c
+  test/test_assembler.c
 )
 
 target_include_directories(test_all PRIVATE
@@ -35,6 +36,7 @@ target_include_directories(test_all PRIVATE
   ${CMAKE_SOURCE_DIR}/include
 )
 
+target_link_directories(test_all PRIVATE ${CRITERION_LIBRARY_DIRS})
 target_link_libraries(test_all PRIVATE
   ${CRITERION_LIBRARIES}
   tokenizer utils asm parser errors

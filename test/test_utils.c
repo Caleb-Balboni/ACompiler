@@ -106,14 +106,14 @@ Test(hashtable, remove) {
 }
 
 Test(stack, init) {
-  stack_t* stack = init_stack();
+  Stack* stack = init_stack();
   cr_assert(stack != NULL);
   cr_assert(stack->head == NULL);
   delete_stack(stack);
 }
 
 Test(stack, pushandpop) {
-  stack_t* stack = init_stack();
+  Stack* stack = init_stack();
   int arr[5] = {5, 4, 3, 2, 1};
   for (int i = 0; i < 5; i++) {
     push_stack(stack, &arr[i]);

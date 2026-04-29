@@ -5,14 +5,14 @@
 #include <string.h>
 #include "utils/stack.h"
 
-stack_t* init_stack() {
-  stack_t* stack = malloc(sizeof(stack_t));
+Stack* init_stack() {
+  Stack* stack = malloc(sizeof(Stack));
   assert(stack != NULL);
   stack->head = NULL;
   return stack;
 }
 
-void* pop_stack(stack_t* stack) {
+void* pop_stack(Stack* stack) {
   if (!stack->head) {
     return NULL;
   } else {
@@ -22,7 +22,7 @@ void* pop_stack(stack_t* stack) {
   }
 }
 
-void push_stack(stack_t* stack, void* val) {
+void push_stack(Stack* stack, void* val) {
   stack_node* temp = malloc(sizeof(stack_node));
   assert(temp != NULL);
   if (!stack->head) {
@@ -36,7 +36,7 @@ void push_stack(stack_t* stack, void* val) {
   }
 }
 
-void* peek_stack(stack_t* stack) {
+void* peek_stack(Stack* stack) {
   if (!stack->head) {
     return NULL;
   } else {
@@ -44,11 +44,11 @@ void* peek_stack(stack_t* stack) {
   }
 }
 
-bool stack_is_empty(stack_t* stack) {
+bool stack_is_empty(Stack* stack) {
   return stack->head == NULL;
 }
 
-void delete_stack(stack_t* stack) {
+void delete_stack(Stack* stack) {
   stack_node* temp = stack->head;
   while (temp) {
     stack_node* next = temp->next;

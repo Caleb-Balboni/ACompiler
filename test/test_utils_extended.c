@@ -11,7 +11,7 @@
 // ============================================================
 
 Test(stack_ext, peek_returns_top_without_removing) {
-  stack_t* stack = init_stack();
+  Stack* stack = init_stack();
   int* a = malloc(sizeof(int)); *a = 10;
   int* b = malloc(sizeof(int)); *b = 20;
   push_stack(stack, a);
@@ -37,19 +37,19 @@ Test(stack_ext, peek_returns_top_without_removing) {
 }
 
 Test(stack_ext, peek_empty_returns_null) {
-  stack_t* stack = init_stack();
+  Stack* stack = init_stack();
   cr_assert(peek_stack(stack) == NULL);
   delete_stack(stack);
 }
 
 Test(stack_ext, is_empty_true) {
-  stack_t* stack = init_stack();
+  Stack* stack = init_stack();
   cr_assert(stack_is_empty(stack) == true);
   delete_stack(stack);
 }
 
 Test(stack_ext, is_empty_false) {
-  stack_t* stack = init_stack();
+  Stack* stack = init_stack();
   int* val = malloc(sizeof(int)); *val = 42;
   push_stack(stack, val);
   cr_assert(stack_is_empty(stack) == false);
@@ -57,7 +57,7 @@ Test(stack_ext, is_empty_false) {
 }
 
 Test(stack_ext, is_empty_after_pop) {
-  stack_t* stack = init_stack();
+  Stack* stack = init_stack();
   int* val = malloc(sizeof(int));
   *val = 5;
   push_stack(stack, val);
@@ -69,13 +69,13 @@ Test(stack_ext, is_empty_after_pop) {
 }
 
 Test(stack_ext, pop_empty_returns_null) {
-  stack_t* stack = init_stack();
+  Stack* stack = init_stack();
   cr_assert(pop_stack(stack) == NULL);
   delete_stack(stack);
 }
 
 Test(stack_ext, push_pop_many) {
-  stack_t* stack = init_stack();
+  Stack* stack = init_stack();
   int* values[100];
   for (int i = 0; i < 100; i++) {
     values[i] = malloc(sizeof(int));
@@ -94,7 +94,7 @@ Test(stack_ext, push_pop_many) {
 }
 
 Test(stack_ext, single_element) {
-  stack_t* stack = init_stack();
+  Stack* stack = init_stack();
   int* val = malloc(sizeof(int)); *val = 99;
   push_stack(stack, val);
 
